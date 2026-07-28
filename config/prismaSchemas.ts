@@ -1,4 +1,3 @@
-
 export const prismaErrorResponses = {
   400: {
     description: "Erro de validação ou requisição inválida",
