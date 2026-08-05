@@ -18,15 +18,20 @@ export { Prisma }
 export * as $Enums from './enums.ts'
 export * from './enums.ts';
 /**
- * Model Alunos
+ * Model alunos
  * 
  */
-export type Alunos = Prisma.AlunosModel
+export type alunos = Prisma.alunosModel
 /**
  * Model funcionarios
  * 
  */
 export type funcionarios = Prisma.funcionariosModel
+/**
+ * Model treino
+ * 
+ */
+export type treino = Prisma.treinoModel
 /**
  * Model receita
  * 

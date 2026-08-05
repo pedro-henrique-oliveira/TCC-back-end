@@ -2,6 +2,8 @@ import { Router, type Request, type Response } from "express";
 import AlunoAcademia from "./controllers/AlunoAcademia";
 import Funcionarios from "./controllers/funcionarios";
 import receita from "./controllers/receita";
+import treino from "./controllers/treinos";
+import treinos from "./controllers/treinos";
 
 const routes = Router();
 
@@ -16,6 +18,11 @@ routes.get("/alunos/:id", AlunoAcademia.getById);
 routes.put("/alunos/:id", AlunoAcademia.update);
 routes.delete("/alunos/:id", AlunoAcademia.delete);
 
+routes.get("/treinos", treino.list);
+routes.post("/treinos", treino.create);
+routes.get("/treinos/:id", treino.getById);
+routes.put("/treinos/:id", treino.update);
+routes.delete("/treinos/:id", treino.delete);
 
 routes.get("/funcionarios", Funcionarios.list);
 routes.post("/funcionarios", Funcionarios.create);

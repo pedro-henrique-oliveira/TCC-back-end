@@ -20,7 +20,7 @@ export default {
         });
       }
 
-      const user = await prisma.Alunos.create({
+      const user = await prisma.alunos.create({
         data: {
           nome,
           email,
@@ -41,7 +41,7 @@ export default {
 
   list: async (_request: Request, response: Response) => {
     try {
-      const users = await prisma.Alunos.findMany();
+      const users = await prisma.alunos.findMany();
 
       return response.status(200).json(users);
     } catch (e) {
@@ -53,7 +53,7 @@ export default {
     try {
       const id = Number(request.params.id);
 
-      const user = await prisma.Alunos.findUnique({
+      const user = await prisma.alunos.findUnique({
         where: { id },
       });
 
@@ -82,7 +82,7 @@ export default {
         plano,
       } = request.body;
 
-      const user = await prisma.Alunos.update({
+      const user = await prisma.alunos.update({
         where: { id },
         data: {
           nome,
@@ -106,7 +106,7 @@ export default {
     try {
       const id = Number(request.params.id);
 
-      const user = await prisma.Alunos.delete({
+      const user = await prisma.alunos.delete({
         where: { id },
       });
 
@@ -117,57 +117,112 @@ export default {
   },
 
 
- matricular: async (request: Request, response: Response) => {
-    try {
-      const { id } = request.params;
-      const { instrutoresIds } = request.body;
+ // VINCULAR FUNCIONÁRIOS AO ALUNO
+matricular: async (request: Request, response: Response) => {
+  try {
+    const alunoId = Number(request.params.id);
+    const { funcionariosIds } = request.body;
 
-      if (!instrutoresIds || !Array.isArray(instrutoresIds) || instrutoresIds.length === 0) {
-        return response.status(400).json({ error: "instrutoresIds é obrigatório" });
-      }
+    if (
+      !funcionariosIds ||
+      !Array.isArray(funcionariosIds) ||
+      funcionariosIds.length === 0
+    ) {
+      return response.status(400).json({
+        error: "funcionariosIds é obrigatório",
+      });
+    }
 
-      const user = await prisma.Alunos.update({
-        where: { id: Number(id) },
-        data: {
-          instrutores: {
-            connect: instrutoresIds.map((instrutorId: number) => ({ id: instrutorId })),
-          },
+    const aluno = await prisma.alunos.findUnique({
+      where: {
+        id: alunoId,
+      },
+    });
+
+    if (!aluno) {
+      return response.status(404).json({
+        error: "Aluno não encontrado",
+      });
+    }
+
+    const alunoAtualizado = await prisma.alunos.update({
+      where: {
+        id: alunoId,
+      },
+      data: {
+        funcionarios: {
+          connect: funcionariosIds.map((funcionarioId: number) => ({
+            id: Number(funcionarioId),
+          })),
         },
-        include: { instrutores: true },
+      },
+      include: {
+        funcionarios: true,
+      },
+    });
+
+    return response.status(200).json(alunoAtualizado);
+  } catch (e) {
+    return handleError(e, response);
+  }
+},
+
+desmatricular: async (request: Request, response: Response) => {
+  try {
+    const alunoId = Number(request.params.id);
+    const { funcionariosIds } = request.body;
+
+    if (
+      !funcionariosIds ||
+      !Array.isArray(funcionariosIds) ||
+      funcionariosIds.length === 0
+    ) {
+      return response.status(400).json({
+        error: "funcionariosIds é obrigatório",
       });
-      return response.status(201).json(user);
-    } catch (e) {
-      return handleError(e, response);
     }
-  },
 
-  desmatricular: async (request: Request, response: Response) => {
-    try {
-      const { id } = request.params;
-      const { instrutoresIds } = request.body;
-      const alunoId = Number(id);
+    const aluno = await prisma.alunos.findUnique({
+      where: {
+        id: alunoId,
+      },
+      include: {
+        funcionarios: true,
+      },
+    });
 
-      const aluno = await prisma.Alunos.findUnique({
-        where: { id: alunoId },
-        include: { instrutores: true },
+    if (!aluno) {
+      return response.status(404).json({
+        error: "Aluno não encontrado",
       });
-
-      if (!aluno) {
-        return response.status(404).json({ error: "Aluno não encontrado" });
-      }
-
-      const instrutoresQueFicam = aluno.instrutores
-        .filter((instrutor: { id: number }) => !instrutoresIds.includes(instrutor.id))
-        .map((instrutor: { id: number }) => ({ id: instrutor.id }));
-
-      const user = await prisma.Alunos.update({
-        where: { id: alunoId },
-        data: { instrutores: { set: instrutoresQueFicam } },
-        include: { instrutores: true },
-      });
-      return response.status(200).json(user);
-    } catch (e) {
-      return handleError(e, response);
     }
-  },
+
+    const funcionariosQueFicam = aluno.funcionarios
+      .filter(
+        (funcionario) =>
+          !funcionariosIds.includes(funcionario.id)
+      )
+      .map((funcionario) => ({
+        id: funcionario.id,
+      }));
+
+    const alunoAtualizado = await prisma.alunos.update({
+      where: {
+        id: alunoId,
+      },
+      data: {
+        funcionarios: {
+          set: funcionariosQueFicam,
+        },
+      },
+      include: {
+        funcionarios: true,
+      },
+    });
+
+    return response.status(200).json(alunoAtualizado);
+  } catch (e) {
+    return handleError(e, response);
+  }
+},
 };

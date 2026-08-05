@@ -8,25 +8,25 @@ generator client {
   output   = "../generated/prisma"
 }
 
-datasource db { 
+datasource db {
   provider = "sqlite"
 }
 
-
-model Alunos {
-  id             Int          @id @default(autoincrement())
+model alunos {
+  id             Int            @id @default(autoincrement())
   nome           String
   idade          Int?
   dataNascimento DateTime?
   email          String
   cpf            String
   plano          String
-  updatedAt      DateTime     @updatedAt
-  createdAt      DateTime     @default(now())
+  updatedAt      DateTime       @updatedAt
+  createdAt      DateTime       @default(now())
+  treinos        treino[]
 }
 
-model funcionarios {
-  id             Int          @id @default(autoincrement())
+model Funcionarios {
+  id             Int       @id @default(autoincrement())
   nome           String
   email          String
   idade          Int?
@@ -35,30 +35,30 @@ model funcionarios {
   clt            String
   turno          String
   cargo          String
-  updatedAt      DateTime     @updatedAt
-  createdAt      DateTime     @default(now())
+  updatedAt      DateTime  @updatedAt
+  createdAt      DateTime  @default(now())
 }
 
 model treino {
-  id             Int          @id @default(autoincrement())
-  nome           String
-  dataInicio     DateTime
-  dataFim        DateTime
-  local          String
-  turno          String
-  tipoTreino     String
-  funcionarioId  Int
-  updatedAt      DateTime     @updatedAt
-  createdAt      DateTime     @default(now())
+  id          Int      @id @default(autoincrement())
+  nome        String
+  descricao   String
+  dificuldade String
+  duracao     Int
+  tipoTreino  String
+  alunoId     Int
+  aluno       alunos   @relation(fields: [alunoId], references: [id])
+  updatedAt   DateTime @updatedAt
+  createdAt   DateTime @default(now())
 }
 
 model receita {
-  id             Int          @id @default(autoincrement())
-  pagamento       String
-  dataPagamento   DateTime
-  valorPagamento  String
-  status          String
-  formaPagamento  String
-  updatedAt      DateTime     @updatedAt
-  createdAt      DateTime     @default(now())
+  id             Int      @id @default(autoincrement())
+  pagamento      String
+  dataPagamento  DateTime
+  valorPagamento String
+  status         String
+  formaPagamento String
+  updatedAt      DateTime @updatedAt
+  createdAt      DateTime @default(now())
 }
