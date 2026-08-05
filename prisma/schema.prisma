@@ -39,6 +39,19 @@ model funcionarios {
   createdAt      DateTime     @default(now())
 }
 
+model treino {
+  id             Int          @id @default(autoincrement())
+  nome           String
+  dataInicio     DateTime
+  dataFim        DateTime
+  local          String
+  turno          String
+  tipoTreino     String
+  funcionarioId  Int
+  updatedAt      DateTime     @updatedAt
+  createdAt      DateTime     @default(now())
+}
+
 model receita {
   id             Int          @id @default(autoincrement())
   pagamento       String
