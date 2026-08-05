@@ -17,8 +17,8 @@
 
 import * as runtime from "@prisma/client/runtime/index-browser"
 
-export type * from '../models'
-export type * from './prismaNamespace'
+export type * from '../models.ts'
+export type * from './prismaNamespace.ts'
 
 export const Decimal = runtime.Decimal
 
@@ -52,7 +52,8 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Alunos: 'Alunos',
-  instrutores: 'instrutores'
+  funcionarios: 'funcionarios',
+  receita: 'receita'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -83,21 +84,35 @@ export const AlunosScalarFieldEnum = {
 export type AlunosScalarFieldEnum = (typeof AlunosScalarFieldEnum)[keyof typeof AlunosScalarFieldEnum]
 
 
-export const InstrutoresScalarFieldEnum = {
+export const FuncionariosScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
+  email: 'email',
   idade: 'idade',
   dataNascimento: 'dataNascimento',
-  email: 'email',
   cpf: 'cpf',
-  especialidade: 'especialidade',
-  senha: 'senha',
-  admin: 'admin',
+  clt: 'clt',
+  turno: 'turno',
+  cargo: 'cargo',
   updatedAt: 'updatedAt',
   createdAt: 'createdAt'
 } as const
 
-export type InstrutoresScalarFieldEnum = (typeof InstrutoresScalarFieldEnum)[keyof typeof InstrutoresScalarFieldEnum]
+export type FuncionariosScalarFieldEnum = (typeof FuncionariosScalarFieldEnum)[keyof typeof FuncionariosScalarFieldEnum]
+
+
+export const ReceitaScalarFieldEnum = {
+  id: 'id',
+  pagamento: 'pagamento',
+  dataPagamento: 'dataPagamento',
+  valorPagamento: 'valorPagamento',
+  status: 'status',
+  formaPagamento: 'formaPagamento',
+  updatedAt: 'updatedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type ReceitaScalarFieldEnum = (typeof ReceitaScalarFieldEnum)[keyof typeof ReceitaScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -106,4 +121,12 @@ export const SortOrder = {
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

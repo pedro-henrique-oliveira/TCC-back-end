@@ -16,11 +16,36 @@ datasource db {
 model Alunos {
   id             Int          @id @default(autoincrement())
   nome           String
-  idade          String
-  dataNascimento DateTime
+  idade          Int?
+  dataNascimento DateTime?
   email          String
   cpf            String
   plano          String
+  updatedAt      DateTime     @updatedAt
+  createdAt      DateTime     @default(now())
+}
+
+model funcionarios {
+  id             Int          @id @default(autoincrement())
+  nome           String
+  email          String
+  idade          Int?
+  dataNascimento DateTime?
+  cpf            String
+  clt            String
+  turno          String
+  cargo          String
+  updatedAt      DateTime     @updatedAt
+  createdAt      DateTime     @default(now())
+}
+
+model receita {
+  id             Int          @id @default(autoincrement())
+  pagamento       String
+  dataPagamento   DateTime
+  valorPagamento  String
+  status          String
+  formaPagamento  String
   updatedAt      DateTime     @updatedAt
   createdAt      DateTime     @default(now())
 }

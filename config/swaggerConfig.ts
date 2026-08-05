@@ -27,6 +27,46 @@ const errorSchema = {
   example: "Unique constraint failed on the constraint.",
 };
 
+
+const funcionarioSchema = {
+  type: "object",
+  properties: {
+    id: { type: "integer", example: 1 },
+    nome: { type: "string", example: "Funcionario 1" },
+    email: { type: "string", example: "funcionario@gmail.com" },
+    idade: { type: "integer", example: 22 },
+    dataNascimento: {
+      type: "string",
+      format: "date-time",
+      example: "2002-05-26T14:30:00.000Z",
+    },
+    cpf: { type: "integer", example: 12345678910 },
+    clt: { type: "integer", example: 1234 },
+    turno: { type: "string", example: "manhã" },
+    cargo: { type: "string", example: "Gerente" },
+    createdAt: { type: "string", format: "date-time" },
+    updatedAt: { type: "string", format: "date-time" },
+  },
+};
+
+const receitaSchema = {
+  type: "object",
+  properties: {
+    id: { type: "integer", example: 1 },
+    pagamento: { type: "string", example: "Mensalidade" },
+    dataPagamento: {
+      type: "string",
+      format: "date-time",
+      example: "2026-08-04T10:00:00.000Z",
+    },
+    valorPagamento: { type: "string", example: "150.00" },
+    status: { type: "string", example: "Pago" },
+    formaPagamento: { type: "string", example: "Pix" },
+    createdAt: { type: "string", format: "date-time" },
+    updatedAt: { type: "string", format: "date-time" },
+  },
+};
+
 const initialRoute = {
   get: {
     security: [],
@@ -418,6 +458,378 @@ const matriculasRoutesWithId = {
 };
 
 
+
+const funcionariosRoutesNoId = {
+  get: {
+    tags: ["Funcionários"],
+    summary: "Lista de funcionários",
+    responses: {
+      200: {
+        description: "Lista de funcionários",
+        content: {
+          "application/json": {
+            schema: {
+              type: "array",
+              items: { $ref: "#/components/schemas/Funcionario" },
+            },
+            example: [
+              {
+                id: 1,
+                nome: "Funcionario 1",
+                email: "funcionario@gmail.com",
+                idade: 22,
+                dataNascimento: "2002-05-26T14:30:00.000Z",
+                cpf: 12345678910,
+                clt: 1234,
+                turno: "manhã",
+                cargo: "Gerente",
+                createdAt: "2026-08-04T10:00:00.000Z",
+                updatedAt: "2026-08-04T10:00:00.000Z",
+              },
+            ],
+          },
+        },
+      },
+      ...prismaErrorResponses,
+    },
+  },
+
+  post: {
+    tags: ["Funcionários"],
+    summary: "Criar funcionário",
+    requestBody: {
+      required: true,
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              nome: { type: "string" },
+              email: { type: "string" },
+              idade: { type: "integer" },
+              dataNascimento: { type: "string", format: "date-time" },
+              cpf: { type: "integer" },
+              clt: { type: "integer" },
+              turno: { type: "string" },
+              cargo: { type: "string" },
+            },
+          },
+          example: {
+            nome: "Funcionario 1",
+            email: "funcionario@gmail.com",
+            idade: 22,
+            dataNascimento: "2002-05-26T14:30:00.000Z",
+            cpf: 12345678910,
+            clt: 1234,
+            turno: "manhã",
+            cargo: "Gerente",
+          },
+        },
+      },
+    },
+    responses: {
+      201: {
+        description: "Funcionário criado",
+        content: {
+          "application/json": {
+            schema: { $ref: "#/components/schemas/Funcionario" },
+          },
+        },
+      },
+      ...prismaErrorResponses,
+    },
+  },
+};
+
+const funcionariosRoutesWithId = {
+  get: {
+    tags: ["Funcionários"],
+    summary: "Buscar funcionário por ID",
+    parameters: [
+      {
+        name: "id",
+        in: "path",
+        required: true,
+        description: "ID do funcionário",
+        schema: { type: "integer" },
+        example: 1,
+      },
+    ],
+    responses: {
+      200: {
+        description: "Funcionário encontrado",
+        content: {
+          "application/json": {
+            schema: { $ref: "#/components/schemas/Funcionario" },
+          },
+        },
+      },
+      ...prismaErrorResponses,
+    },
+  },
+
+  put: {
+    tags: ["Funcionários"],
+    summary: "Atualizar funcionário",
+    parameters: [
+      {
+        name: "id",
+        in: "path",
+        required: true,
+        description: "ID do funcionário",
+        schema: { type: "integer" },
+        example: 1,
+      },
+    ],
+    requestBody: {
+      required: true,
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              nome: { type: "string" },
+              email: { type: "string" },
+              idade: { type: "integer" },
+              dataNascimento: { type: "string", format: "date-time" },
+              cpf: { type: "integer" },
+              clt: { type: "integer" },
+              turno: { type: "string" },
+              cargo: { type: "string" },
+            },
+          },
+          example: {
+            nome: "Funcionario Atualizado",
+            email: "funcionario2@gmail.com",
+            idade: 23,
+            dataNascimento: "2002-05-26T14:30:00.000Z",
+            cpf: 12345678910,
+            clt: 1234,
+            turno: "tarde",
+            cargo: "Supervisor",
+          },
+        },
+      },
+    },
+    responses: {
+      200: {
+        description: "Funcionário atualizado",
+        content: {
+          "application/json": {
+            schema: { $ref: "#/components/schemas/Funcionario" },
+          },
+        },
+      },
+      ...prismaErrorResponses,
+    },
+  },
+
+  delete: {
+    tags: ["Funcionários"],
+    summary: "Remover funcionário",
+    parameters: [
+      {
+        name: "id",
+        in: "path",
+        required: true,
+        description: "ID do funcionário",
+        schema: { type: "integer" },
+        example: 1,
+      },
+    ],
+    responses: {
+      200: {
+        description: "Funcionário removido",
+        content: {
+          "application/json": {
+            schema: { type: "string" },
+            example: "Funcionário removido com sucesso.",
+          },
+        },
+      },
+      ...prismaErrorResponses,
+    },
+  },
+};
+
+const receitasRoutesNoId = {
+  get: {
+    tags: ["Receitas"],
+    summary: "Lista de receitas",
+    responses: {
+      200: {
+        description: "Lista de receitas",
+        content: {
+          "application/json": {
+            schema: {
+              type: "array",
+              items: { $ref: "#/components/schemas/Receita" },
+            },
+            example: [
+              {
+                id: 1,
+                pagamento: "Mensalidade",
+                dataPagamento: "2026-08-04T10:00:00.000Z",
+                valorPagamento: "150.00",
+                status: "Pago",
+                formaPagamento: "Pix",
+                createdAt: "2026-08-04T10:00:00.000Z",
+                updatedAt: "2026-08-04T10:00:00.000Z",
+              },
+            ],
+          },
+        },
+      },
+      ...prismaErrorResponses,
+    },
+  },
+
+  post: {
+    tags: ["Receitas"],
+    summary: "Criar receita",
+    requestBody: {
+      required: true,
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              pagamento: { type: "string" },
+              dataPagamento: { type: "string", format: "date-time" },
+              valorPagamento: { type: "string" },
+              status: { type: "string" },
+              formaPagamento: { type: "string" },
+            },
+          },
+          example: {
+            pagamento: "Mensalidade",
+            dataPagamento: "2026-08-04T10:00:00.000Z",
+            valorPagamento: "150.00",
+            status: "Pago",
+            formaPagamento: "Pix",
+          },
+        },
+      },
+    },
+    responses: {
+      201: {
+        description: "Receita criada",
+        content: {
+          "application/json": {
+            schema: { $ref: "#/components/schemas/Receita" },
+          },
+        },
+      },
+      ...prismaErrorResponses,
+    },
+  },
+};
+
+const receitasRoutesWithId = {
+  get: {
+    tags: ["Receitas"],
+    summary: "Buscar receita por ID",
+    parameters: [
+      {
+        name: "id",
+        in: "path",
+        required: true,
+        description: "ID da receita",
+        schema: { type: "integer" },
+        example: 1,
+      },
+    ],
+    responses: {
+      200: {
+        description: "Receita encontrada",
+        content: {
+          "application/json": {
+            schema: { $ref: "#/components/schemas/Receita" },
+          },
+        },
+      },
+      ...prismaErrorResponses,
+    },
+  },
+
+  put: {
+    tags: ["Receitas"],
+    summary: "Atualizar receita",
+    parameters: [
+      {
+        name: "id",
+        in: "path",
+        required: true,
+        description: "ID da receita",
+        schema: { type: "integer" },
+        example: 1,
+      },
+    ],
+    requestBody: {
+      required: true,
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              pagamento: { type: "string" },
+              dataPagamento: { type: "string", format: "date-time" },
+              valorPagamento: { type: "string" },
+              status: { type: "string" },
+              formaPagamento: { type: "string" },
+            },
+          },
+          example: {
+            pagamento: "Mensalidade atualizada",
+            dataPagamento: "2026-08-04T10:00:00.000Z",
+            valorPagamento: "180.00",
+            status: "Pago",
+            formaPagamento: "Cartão",
+          },
+        },
+      },
+    },
+    responses: {
+      200: {
+        description: "Receita atualizada",
+        content: {
+          "application/json": {
+            schema: { $ref: "#/components/schemas/Receita" },
+          },
+        },
+      },
+      ...prismaErrorResponses,
+    },
+  },
+
+  delete: {
+    tags: ["Receitas"],
+    summary: "Remover receita",
+    parameters: [
+      {
+        name: "id",
+        in: "path",
+        required: true,
+        description: "ID da receita",
+        schema: { type: "integer" },
+        example: 1,
+      },
+    ],
+    responses: {
+      200: {
+        description: "Receita removida",
+        content: {
+          "application/json": {
+            schema: { type: "string" },
+            example: "Receita removida com sucesso.",
+          },
+        },
+      },
+      ...prismaErrorResponses,
+    },
+  },
+};
+
 export default {
   openapi: "3.2.0",
   info: {
@@ -435,6 +847,10 @@ export default {
     "/alunos": alunosRoutesNoId,
     "/alunos/{id}": alunosRoutesWithId,
     "/matriculas/{id}": matriculasRoutesWithId,
+    "/funcionarios": funcionariosRoutesNoId,
+    "/funcionarios/{id}": funcionariosRoutesWithId,
+    "/receitas": receitasRoutesNoId,
+    "/receitas/{id}": receitasRoutesWithId,
   },
   tags: [
     {
@@ -449,10 +865,20 @@ export default {
       name: "Matrículas",
       description: "Gerenciamento das matrículas dos alunos",
     },
+    {
+      name: "Funcionários",
+      description: "CRUD de funcionários",
+    },
+    {
+      name: "Receitas",
+      description: "CRUD de receitas",
+    },
   ],
   components: {
     schemas: {
       Aluno: alunoSchema,
+      Funcionario: funcionarioSchema,
+      Receita: receitaSchema,
       Erro: errorSchema,
     },
     securitySchemes: {
