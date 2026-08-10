@@ -29,11 +29,13 @@ export type AggregateAlunos = {
 export type AlunosAvgAggregateOutputType = {
   id: number | null
   idade: number | null
+  funcionarioId: number | null
 }
 
 export type AlunosSumAggregateOutputType = {
   id: number | null
   idade: number | null
+  funcionarioId: number | null
 }
 
 export type AlunosMinAggregateOutputType = {
@@ -46,6 +48,7 @@ export type AlunosMinAggregateOutputType = {
   plano: string | null
   updatedAt: Date | null
   createdAt: Date | null
+  funcionarioId: number | null
 }
 
 export type AlunosMaxAggregateOutputType = {
@@ -58,6 +61,7 @@ export type AlunosMaxAggregateOutputType = {
   plano: string | null
   updatedAt: Date | null
   createdAt: Date | null
+  funcionarioId: number | null
 }
 
 export type AlunosCountAggregateOutputType = {
@@ -70,6 +74,7 @@ export type AlunosCountAggregateOutputType = {
   plano: number
   updatedAt: number
   createdAt: number
+  funcionarioId: number
   _all: number
 }
 
@@ -77,11 +82,13 @@ export type AlunosCountAggregateOutputType = {
 export type AlunosAvgAggregateInputType = {
   id?: true
   idade?: true
+  funcionarioId?: true
 }
 
 export type AlunosSumAggregateInputType = {
   id?: true
   idade?: true
+  funcionarioId?: true
 }
 
 export type AlunosMinAggregateInputType = {
@@ -94,6 +101,7 @@ export type AlunosMinAggregateInputType = {
   plano?: true
   updatedAt?: true
   createdAt?: true
+  funcionarioId?: true
 }
 
 export type AlunosMaxAggregateInputType = {
@@ -106,6 +114,7 @@ export type AlunosMaxAggregateInputType = {
   plano?: true
   updatedAt?: true
   createdAt?: true
+  funcionarioId?: true
 }
 
 export type AlunosCountAggregateInputType = {
@@ -118,6 +127,7 @@ export type AlunosCountAggregateInputType = {
   plano?: true
   updatedAt?: true
   createdAt?: true
+  funcionarioId?: true
   _all?: true
 }
 
@@ -217,6 +227,7 @@ export type AlunosGroupByOutputType = {
   plano: string
   updatedAt: Date
   createdAt: Date
+  funcionarioId: number | null
   _count: AlunosCountAggregateOutputType | null
   _avg: AlunosAvgAggregateOutputType | null
   _sum: AlunosSumAggregateOutputType | null
@@ -252,8 +263,9 @@ export type alunosWhereInput = {
   plano?: Prisma.StringFilter<"alunos"> | string
   updatedAt?: Prisma.DateTimeFilter<"alunos"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"alunos"> | Date | string
+  funcionarioId?: Prisma.IntNullableFilter<"alunos"> | number | null
   treinos?: Prisma.TreinoListRelationFilter
-  funcionarios?: Prisma.FuncionariosListRelationFilter
+  funcionario?: Prisma.XOR<Prisma.FuncionariosNullableScalarRelationFilter, Prisma.FuncionariosWhereInput> | null
 }
 
 export type alunosOrderByWithRelationInput = {
@@ -266,8 +278,9 @@ export type alunosOrderByWithRelationInput = {
   plano?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  funcionarioId?: Prisma.SortOrderInput | Prisma.SortOrder
   treinos?: Prisma.treinoOrderByRelationAggregateInput
-  funcionarios?: Prisma.funcionariosOrderByRelationAggregateInput
+  funcionario?: Prisma.FuncionariosOrderByWithRelationInput
 }
 
 export type alunosWhereUniqueInput = Prisma.AtLeast<{
@@ -283,8 +296,9 @@ export type alunosWhereUniqueInput = Prisma.AtLeast<{
   plano?: Prisma.StringFilter<"alunos"> | string
   updatedAt?: Prisma.DateTimeFilter<"alunos"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"alunos"> | Date | string
+  funcionarioId?: Prisma.IntNullableFilter<"alunos"> | number | null
   treinos?: Prisma.TreinoListRelationFilter
-  funcionarios?: Prisma.FuncionariosListRelationFilter
+  funcionario?: Prisma.XOR<Prisma.FuncionariosNullableScalarRelationFilter, Prisma.FuncionariosWhereInput> | null
 }, "id">
 
 export type alunosOrderByWithAggregationInput = {
@@ -297,6 +311,7 @@ export type alunosOrderByWithAggregationInput = {
   plano?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  funcionarioId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.alunosCountOrderByAggregateInput
   _avg?: Prisma.alunosAvgOrderByAggregateInput
   _max?: Prisma.alunosMaxOrderByAggregateInput
@@ -317,6 +332,7 @@ export type alunosScalarWhereWithAggregatesInput = {
   plano?: Prisma.StringWithAggregatesFilter<"alunos"> | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"alunos"> | Date | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"alunos"> | Date | string
+  funcionarioId?: Prisma.IntNullableWithAggregatesFilter<"alunos"> | number | null
 }
 
 export type alunosCreateInput = {
@@ -329,7 +345,7 @@ export type alunosCreateInput = {
   updatedAt?: Date | string
   createdAt?: Date | string
   treinos?: Prisma.treinoCreateNestedManyWithoutAlunoInput
-  funcionarios?: Prisma.funcionariosCreateNestedManyWithoutAlunosInput
+  funcionario?: Prisma.FuncionariosCreateNestedOneWithoutAlunosInput
 }
 
 export type alunosUncheckedCreateInput = {
@@ -342,8 +358,8 @@ export type alunosUncheckedCreateInput = {
   plano: string
   updatedAt?: Date | string
   createdAt?: Date | string
+  funcionarioId?: number | null
   treinos?: Prisma.treinoUncheckedCreateNestedManyWithoutAlunoInput
-  funcionarios?: Prisma.funcionariosUncheckedCreateNestedManyWithoutAlunosInput
 }
 
 export type alunosUpdateInput = {
@@ -356,7 +372,7 @@ export type alunosUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   treinos?: Prisma.treinoUpdateManyWithoutAlunoNestedInput
-  funcionarios?: Prisma.funcionariosUpdateManyWithoutAlunosNestedInput
+  funcionario?: Prisma.FuncionariosUpdateOneWithoutAlunosNestedInput
 }
 
 export type alunosUncheckedUpdateInput = {
@@ -369,8 +385,8 @@ export type alunosUncheckedUpdateInput = {
   plano?: Prisma.StringFieldUpdateOperationsInput | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  funcionarioId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   treinos?: Prisma.treinoUncheckedUpdateManyWithoutAlunoNestedInput
-  funcionarios?: Prisma.funcionariosUncheckedUpdateManyWithoutAlunosNestedInput
 }
 
 export type alunosCreateManyInput = {
@@ -383,6 +399,7 @@ export type alunosCreateManyInput = {
   plano: string
   updatedAt?: Date | string
   createdAt?: Date | string
+  funcionarioId?: number | null
 }
 
 export type alunosUpdateManyMutationInput = {
@@ -406,6 +423,7 @@ export type alunosUncheckedUpdateManyInput = {
   plano?: Prisma.StringFieldUpdateOperationsInput | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  funcionarioId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type alunosCountOrderByAggregateInput = {
@@ -418,11 +436,13 @@ export type alunosCountOrderByAggregateInput = {
   plano?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  funcionarioId?: Prisma.SortOrder
 }
 
 export type alunosAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   idade?: Prisma.SortOrder
+  funcionarioId?: Prisma.SortOrder
 }
 
 export type alunosMaxOrderByAggregateInput = {
@@ -435,6 +455,7 @@ export type alunosMaxOrderByAggregateInput = {
   plano?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  funcionarioId?: Prisma.SortOrder
 }
 
 export type alunosMinOrderByAggregateInput = {
@@ -447,11 +468,13 @@ export type alunosMinOrderByAggregateInput = {
   plano?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  funcionarioId?: Prisma.SortOrder
 }
 
 export type alunosSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   idade?: Prisma.SortOrder
+  funcionarioId?: Prisma.SortOrder
 }
 
 export type AlunosListRelationFilter = {
@@ -497,41 +520,45 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type alunosCreateNestedManyWithoutFuncionariosInput = {
-  create?: Prisma.XOR<Prisma.alunosCreateWithoutFuncionariosInput, Prisma.alunosUncheckedCreateWithoutFuncionariosInput> | Prisma.alunosCreateWithoutFuncionariosInput[] | Prisma.alunosUncheckedCreateWithoutFuncionariosInput[]
-  connectOrCreate?: Prisma.alunosCreateOrConnectWithoutFuncionariosInput | Prisma.alunosCreateOrConnectWithoutFuncionariosInput[]
+export type alunosCreateNestedManyWithoutFuncionarioInput = {
+  create?: Prisma.XOR<Prisma.alunosCreateWithoutFuncionarioInput, Prisma.alunosUncheckedCreateWithoutFuncionarioInput> | Prisma.alunosCreateWithoutFuncionarioInput[] | Prisma.alunosUncheckedCreateWithoutFuncionarioInput[]
+  connectOrCreate?: Prisma.alunosCreateOrConnectWithoutFuncionarioInput | Prisma.alunosCreateOrConnectWithoutFuncionarioInput[]
+  createMany?: Prisma.alunosCreateManyFuncionarioInputEnvelope
   connect?: Prisma.alunosWhereUniqueInput | Prisma.alunosWhereUniqueInput[]
 }
 
-export type alunosUncheckedCreateNestedManyWithoutFuncionariosInput = {
-  create?: Prisma.XOR<Prisma.alunosCreateWithoutFuncionariosInput, Prisma.alunosUncheckedCreateWithoutFuncionariosInput> | Prisma.alunosCreateWithoutFuncionariosInput[] | Prisma.alunosUncheckedCreateWithoutFuncionariosInput[]
-  connectOrCreate?: Prisma.alunosCreateOrConnectWithoutFuncionariosInput | Prisma.alunosCreateOrConnectWithoutFuncionariosInput[]
+export type alunosUncheckedCreateNestedManyWithoutFuncionarioInput = {
+  create?: Prisma.XOR<Prisma.alunosCreateWithoutFuncionarioInput, Prisma.alunosUncheckedCreateWithoutFuncionarioInput> | Prisma.alunosCreateWithoutFuncionarioInput[] | Prisma.alunosUncheckedCreateWithoutFuncionarioInput[]
+  connectOrCreate?: Prisma.alunosCreateOrConnectWithoutFuncionarioInput | Prisma.alunosCreateOrConnectWithoutFuncionarioInput[]
+  createMany?: Prisma.alunosCreateManyFuncionarioInputEnvelope
   connect?: Prisma.alunosWhereUniqueInput | Prisma.alunosWhereUniqueInput[]
 }
 
-export type alunosUpdateManyWithoutFuncionariosNestedInput = {
-  create?: Prisma.XOR<Prisma.alunosCreateWithoutFuncionariosInput, Prisma.alunosUncheckedCreateWithoutFuncionariosInput> | Prisma.alunosCreateWithoutFuncionariosInput[] | Prisma.alunosUncheckedCreateWithoutFuncionariosInput[]
-  connectOrCreate?: Prisma.alunosCreateOrConnectWithoutFuncionariosInput | Prisma.alunosCreateOrConnectWithoutFuncionariosInput[]
-  upsert?: Prisma.alunosUpsertWithWhereUniqueWithoutFuncionariosInput | Prisma.alunosUpsertWithWhereUniqueWithoutFuncionariosInput[]
+export type alunosUpdateManyWithoutFuncionarioNestedInput = {
+  create?: Prisma.XOR<Prisma.alunosCreateWithoutFuncionarioInput, Prisma.alunosUncheckedCreateWithoutFuncionarioInput> | Prisma.alunosCreateWithoutFuncionarioInput[] | Prisma.alunosUncheckedCreateWithoutFuncionarioInput[]
+  connectOrCreate?: Prisma.alunosCreateOrConnectWithoutFuncionarioInput | Prisma.alunosCreateOrConnectWithoutFuncionarioInput[]
+  upsert?: Prisma.alunosUpsertWithWhereUniqueWithoutFuncionarioInput | Prisma.alunosUpsertWithWhereUniqueWithoutFuncionarioInput[]
+  createMany?: Prisma.alunosCreateManyFuncionarioInputEnvelope
   set?: Prisma.alunosWhereUniqueInput | Prisma.alunosWhereUniqueInput[]
   disconnect?: Prisma.alunosWhereUniqueInput | Prisma.alunosWhereUniqueInput[]
   delete?: Prisma.alunosWhereUniqueInput | Prisma.alunosWhereUniqueInput[]
   connect?: Prisma.alunosWhereUniqueInput | Prisma.alunosWhereUniqueInput[]
-  update?: Prisma.alunosUpdateWithWhereUniqueWithoutFuncionariosInput | Prisma.alunosUpdateWithWhereUniqueWithoutFuncionariosInput[]
-  updateMany?: Prisma.alunosUpdateManyWithWhereWithoutFuncionariosInput | Prisma.alunosUpdateManyWithWhereWithoutFuncionariosInput[]
+  update?: Prisma.alunosUpdateWithWhereUniqueWithoutFuncionarioInput | Prisma.alunosUpdateWithWhereUniqueWithoutFuncionarioInput[]
+  updateMany?: Prisma.alunosUpdateManyWithWhereWithoutFuncionarioInput | Prisma.alunosUpdateManyWithWhereWithoutFuncionarioInput[]
   deleteMany?: Prisma.alunosScalarWhereInput | Prisma.alunosScalarWhereInput[]
 }
 
-export type alunosUncheckedUpdateManyWithoutFuncionariosNestedInput = {
-  create?: Prisma.XOR<Prisma.alunosCreateWithoutFuncionariosInput, Prisma.alunosUncheckedCreateWithoutFuncionariosInput> | Prisma.alunosCreateWithoutFuncionariosInput[] | Prisma.alunosUncheckedCreateWithoutFuncionariosInput[]
-  connectOrCreate?: Prisma.alunosCreateOrConnectWithoutFuncionariosInput | Prisma.alunosCreateOrConnectWithoutFuncionariosInput[]
-  upsert?: Prisma.alunosUpsertWithWhereUniqueWithoutFuncionariosInput | Prisma.alunosUpsertWithWhereUniqueWithoutFuncionariosInput[]
+export type alunosUncheckedUpdateManyWithoutFuncionarioNestedInput = {
+  create?: Prisma.XOR<Prisma.alunosCreateWithoutFuncionarioInput, Prisma.alunosUncheckedCreateWithoutFuncionarioInput> | Prisma.alunosCreateWithoutFuncionarioInput[] | Prisma.alunosUncheckedCreateWithoutFuncionarioInput[]
+  connectOrCreate?: Prisma.alunosCreateOrConnectWithoutFuncionarioInput | Prisma.alunosCreateOrConnectWithoutFuncionarioInput[]
+  upsert?: Prisma.alunosUpsertWithWhereUniqueWithoutFuncionarioInput | Prisma.alunosUpsertWithWhereUniqueWithoutFuncionarioInput[]
+  createMany?: Prisma.alunosCreateManyFuncionarioInputEnvelope
   set?: Prisma.alunosWhereUniqueInput | Prisma.alunosWhereUniqueInput[]
   disconnect?: Prisma.alunosWhereUniqueInput | Prisma.alunosWhereUniqueInput[]
   delete?: Prisma.alunosWhereUniqueInput | Prisma.alunosWhereUniqueInput[]
   connect?: Prisma.alunosWhereUniqueInput | Prisma.alunosWhereUniqueInput[]
-  update?: Prisma.alunosUpdateWithWhereUniqueWithoutFuncionariosInput | Prisma.alunosUpdateWithWhereUniqueWithoutFuncionariosInput[]
-  updateMany?: Prisma.alunosUpdateManyWithWhereWithoutFuncionariosInput | Prisma.alunosUpdateManyWithWhereWithoutFuncionariosInput[]
+  update?: Prisma.alunosUpdateWithWhereUniqueWithoutFuncionarioInput | Prisma.alunosUpdateWithWhereUniqueWithoutFuncionarioInput[]
+  updateMany?: Prisma.alunosUpdateManyWithWhereWithoutFuncionarioInput | Prisma.alunosUpdateManyWithWhereWithoutFuncionarioInput[]
   deleteMany?: Prisma.alunosScalarWhereInput | Prisma.alunosScalarWhereInput[]
 }
 
@@ -549,7 +576,7 @@ export type alunosUpdateOneRequiredWithoutTreinosNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.alunosUpdateToOneWithWhereWithoutTreinosInput, Prisma.alunosUpdateWithoutTreinosInput>, Prisma.alunosUncheckedUpdateWithoutTreinosInput>
 }
 
-export type alunosCreateWithoutFuncionariosInput = {
+export type alunosCreateWithoutFuncionarioInput = {
   nome: string
   idade?: number | null
   dataNascimento?: Date | string | null
@@ -561,7 +588,7 @@ export type alunosCreateWithoutFuncionariosInput = {
   treinos?: Prisma.treinoCreateNestedManyWithoutAlunoInput
 }
 
-export type alunosUncheckedCreateWithoutFuncionariosInput = {
+export type alunosUncheckedCreateWithoutFuncionarioInput = {
   id?: number
   nome: string
   idade?: number | null
@@ -574,25 +601,29 @@ export type alunosUncheckedCreateWithoutFuncionariosInput = {
   treinos?: Prisma.treinoUncheckedCreateNestedManyWithoutAlunoInput
 }
 
-export type alunosCreateOrConnectWithoutFuncionariosInput = {
+export type alunosCreateOrConnectWithoutFuncionarioInput = {
   where: Prisma.alunosWhereUniqueInput
-  create: Prisma.XOR<Prisma.alunosCreateWithoutFuncionariosInput, Prisma.alunosUncheckedCreateWithoutFuncionariosInput>
+  create: Prisma.XOR<Prisma.alunosCreateWithoutFuncionarioInput, Prisma.alunosUncheckedCreateWithoutFuncionarioInput>
 }
 
-export type alunosUpsertWithWhereUniqueWithoutFuncionariosInput = {
-  where: Prisma.alunosWhereUniqueInput
-  update: Prisma.XOR<Prisma.alunosUpdateWithoutFuncionariosInput, Prisma.alunosUncheckedUpdateWithoutFuncionariosInput>
-  create: Prisma.XOR<Prisma.alunosCreateWithoutFuncionariosInput, Prisma.alunosUncheckedCreateWithoutFuncionariosInput>
+export type alunosCreateManyFuncionarioInputEnvelope = {
+  data: Prisma.alunosCreateManyFuncionarioInput | Prisma.alunosCreateManyFuncionarioInput[]
 }
 
-export type alunosUpdateWithWhereUniqueWithoutFuncionariosInput = {
+export type alunosUpsertWithWhereUniqueWithoutFuncionarioInput = {
   where: Prisma.alunosWhereUniqueInput
-  data: Prisma.XOR<Prisma.alunosUpdateWithoutFuncionariosInput, Prisma.alunosUncheckedUpdateWithoutFuncionariosInput>
+  update: Prisma.XOR<Prisma.alunosUpdateWithoutFuncionarioInput, Prisma.alunosUncheckedUpdateWithoutFuncionarioInput>
+  create: Prisma.XOR<Prisma.alunosCreateWithoutFuncionarioInput, Prisma.alunosUncheckedCreateWithoutFuncionarioInput>
 }
 
-export type alunosUpdateManyWithWhereWithoutFuncionariosInput = {
+export type alunosUpdateWithWhereUniqueWithoutFuncionarioInput = {
+  where: Prisma.alunosWhereUniqueInput
+  data: Prisma.XOR<Prisma.alunosUpdateWithoutFuncionarioInput, Prisma.alunosUncheckedUpdateWithoutFuncionarioInput>
+}
+
+export type alunosUpdateManyWithWhereWithoutFuncionarioInput = {
   where: Prisma.alunosScalarWhereInput
-  data: Prisma.XOR<Prisma.alunosUpdateManyMutationInput, Prisma.alunosUncheckedUpdateManyWithoutFuncionariosInput>
+  data: Prisma.XOR<Prisma.alunosUpdateManyMutationInput, Prisma.alunosUncheckedUpdateManyWithoutFuncionarioInput>
 }
 
 export type alunosScalarWhereInput = {
@@ -608,6 +639,7 @@ export type alunosScalarWhereInput = {
   plano?: Prisma.StringFilter<"alunos"> | string
   updatedAt?: Prisma.DateTimeFilter<"alunos"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"alunos"> | Date | string
+  funcionarioId?: Prisma.IntNullableFilter<"alunos"> | number | null
 }
 
 export type alunosCreateWithoutTreinosInput = {
@@ -619,7 +651,7 @@ export type alunosCreateWithoutTreinosInput = {
   plano: string
   updatedAt?: Date | string
   createdAt?: Date | string
-  funcionarios?: Prisma.funcionariosCreateNestedManyWithoutAlunosInput
+  funcionario?: Prisma.FuncionariosCreateNestedOneWithoutAlunosInput
 }
 
 export type alunosUncheckedCreateWithoutTreinosInput = {
@@ -632,7 +664,7 @@ export type alunosUncheckedCreateWithoutTreinosInput = {
   plano: string
   updatedAt?: Date | string
   createdAt?: Date | string
-  funcionarios?: Prisma.funcionariosUncheckedCreateNestedManyWithoutAlunosInput
+  funcionarioId?: number | null
 }
 
 export type alunosCreateOrConnectWithoutTreinosInput = {
@@ -660,7 +692,7 @@ export type alunosUpdateWithoutTreinosInput = {
   plano?: Prisma.StringFieldUpdateOperationsInput | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  funcionarios?: Prisma.funcionariosUpdateManyWithoutAlunosNestedInput
+  funcionario?: Prisma.FuncionariosUpdateOneWithoutAlunosNestedInput
 }
 
 export type alunosUncheckedUpdateWithoutTreinosInput = {
@@ -673,10 +705,22 @@ export type alunosUncheckedUpdateWithoutTreinosInput = {
   plano?: Prisma.StringFieldUpdateOperationsInput | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  funcionarios?: Prisma.funcionariosUncheckedUpdateManyWithoutAlunosNestedInput
+  funcionarioId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
-export type alunosUpdateWithoutFuncionariosInput = {
+export type alunosCreateManyFuncionarioInput = {
+  id?: number
+  nome: string
+  idade?: number | null
+  dataNascimento?: Date | string | null
+  email: string
+  cpf: string
+  plano: string
+  updatedAt?: Date | string
+  createdAt?: Date | string
+}
+
+export type alunosUpdateWithoutFuncionarioInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   idade?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dataNascimento?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -688,7 +732,7 @@ export type alunosUpdateWithoutFuncionariosInput = {
   treinos?: Prisma.treinoUpdateManyWithoutAlunoNestedInput
 }
 
-export type alunosUncheckedUpdateWithoutFuncionariosInput = {
+export type alunosUncheckedUpdateWithoutFuncionarioInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   idade?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -701,7 +745,7 @@ export type alunosUncheckedUpdateWithoutFuncionariosInput = {
   treinos?: Prisma.treinoUncheckedUpdateManyWithoutAlunoNestedInput
 }
 
-export type alunosUncheckedUpdateManyWithoutFuncionariosInput = {
+export type alunosUncheckedUpdateManyWithoutFuncionarioInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   idade?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -720,12 +764,10 @@ export type alunosUncheckedUpdateManyWithoutFuncionariosInput = {
 
 export type AlunosCountOutputType = {
   treinos: number
-  funcionarios: number
 }
 
 export type AlunosCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   treinos?: boolean | AlunosCountOutputTypeCountTreinosArgs
-  funcionarios?: boolean | AlunosCountOutputTypeCountFuncionariosArgs
 }
 
 /**
@@ -745,13 +787,6 @@ export type AlunosCountOutputTypeCountTreinosArgs<ExtArgs extends runtime.Types.
   where?: Prisma.treinoWhereInput
 }
 
-/**
- * AlunosCountOutputType without action
- */
-export type AlunosCountOutputTypeCountFuncionariosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.funcionariosWhereInput
-}
-
 
 export type alunosSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -763,8 +798,9 @@ export type alunosSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   plano?: boolean
   updatedAt?: boolean
   createdAt?: boolean
+  funcionarioId?: boolean
   treinos?: boolean | Prisma.alunos$treinosArgs<ExtArgs>
-  funcionarios?: boolean | Prisma.alunos$funcionariosArgs<ExtArgs>
+  funcionario?: boolean | Prisma.alunos$funcionarioArgs<ExtArgs>
   _count?: boolean | Prisma.AlunosCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["alunos"]>
 
@@ -778,6 +814,8 @@ export type alunosSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   plano?: boolean
   updatedAt?: boolean
   createdAt?: boolean
+  funcionarioId?: boolean
+  funcionario?: boolean | Prisma.alunos$funcionarioArgs<ExtArgs>
 }, ExtArgs["result"]["alunos"]>
 
 export type alunosSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -790,6 +828,8 @@ export type alunosSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   plano?: boolean
   updatedAt?: boolean
   createdAt?: boolean
+  funcionarioId?: boolean
+  funcionario?: boolean | Prisma.alunos$funcionarioArgs<ExtArgs>
 }, ExtArgs["result"]["alunos"]>
 
 export type alunosSelectScalar = {
@@ -802,22 +842,27 @@ export type alunosSelectScalar = {
   plano?: boolean
   updatedAt?: boolean
   createdAt?: boolean
+  funcionarioId?: boolean
 }
 
-export type alunosOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "idade" | "dataNascimento" | "email" | "cpf" | "plano" | "updatedAt" | "createdAt", ExtArgs["result"]["alunos"]>
+export type alunosOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "idade" | "dataNascimento" | "email" | "cpf" | "plano" | "updatedAt" | "createdAt" | "funcionarioId", ExtArgs["result"]["alunos"]>
 export type alunosInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   treinos?: boolean | Prisma.alunos$treinosArgs<ExtArgs>
-  funcionarios?: boolean | Prisma.alunos$funcionariosArgs<ExtArgs>
+  funcionario?: boolean | Prisma.alunos$funcionarioArgs<ExtArgs>
   _count?: boolean | Prisma.AlunosCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type alunosIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type alunosIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type alunosIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  funcionario?: boolean | Prisma.alunos$funcionarioArgs<ExtArgs>
+}
+export type alunosIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  funcionario?: boolean | Prisma.alunos$funcionarioArgs<ExtArgs>
+}
 
 export type $alunosPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "alunos"
   objects: {
     treinos: Prisma.$treinoPayload<ExtArgs>[]
-    funcionarios: Prisma.$funcionariosPayload<ExtArgs>[]
+    funcionario: Prisma.$FuncionariosPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -829,6 +874,7 @@ export type $alunosPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     plano: string
     updatedAt: Date
     createdAt: Date
+    funcionarioId: number | null
   }, ExtArgs["result"]["alunos"]>
   composites: {}
 }
@@ -1224,7 +1270,7 @@ readonly fields: alunosFieldRefs;
 export interface Prisma__alunosClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   treinos<T extends Prisma.alunos$treinosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.alunos$treinosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$treinoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  funcionarios<T extends Prisma.alunos$funcionariosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.alunos$funcionariosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$funcionariosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  funcionario<T extends Prisma.alunos$funcionarioArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.alunos$funcionarioArgs<ExtArgs>>): Prisma.Prisma__FuncionariosClient<runtime.Types.Result.GetResult<Prisma.$FuncionariosPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1263,6 +1309,7 @@ export interface alunosFieldRefs {
   readonly plano: Prisma.FieldRef<"alunos", 'String'>
   readonly updatedAt: Prisma.FieldRef<"alunos", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"alunos", 'DateTime'>
+  readonly funcionarioId: Prisma.FieldRef<"alunos", 'Int'>
 }
     
 
@@ -1515,6 +1562,10 @@ export type alunosCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    * The data used to create many alunos.
    */
   data: Prisma.alunosCreateManyInput | Prisma.alunosCreateManyInput[]
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.alunosIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1585,6 +1636,10 @@ export type alunosUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    * Limit how many alunos to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.alunosIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1678,27 +1733,22 @@ export type alunos$treinosArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * alunos.funcionarios
+ * alunos.funcionario
  */
-export type alunos$funcionariosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type alunos$funcionarioArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the funcionarios
+   * Select specific fields to fetch from the Funcionarios
    */
-  select?: Prisma.funcionariosSelect<ExtArgs> | null
+  select?: Prisma.FuncionariosSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the funcionarios
+   * Omit specific fields from the Funcionarios
    */
-  omit?: Prisma.funcionariosOmit<ExtArgs> | null
+  omit?: Prisma.FuncionariosOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.funcionariosInclude<ExtArgs> | null
-  where?: Prisma.funcionariosWhereInput
-  orderBy?: Prisma.funcionariosOrderByWithRelationInput | Prisma.funcionariosOrderByWithRelationInput[]
-  cursor?: Prisma.funcionariosWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.FuncionariosScalarFieldEnum | Prisma.FuncionariosScalarFieldEnum[]
+  include?: Prisma.FuncionariosInclude<ExtArgs> | null
+  where?: Prisma.FuncionariosWhereInput
 }
 
 /**

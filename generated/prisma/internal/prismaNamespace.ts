@@ -385,7 +385,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   alunos: 'alunos',
-  funcionarios: 'funcionarios',
+  Funcionarios: 'Funcionarios',
   treino: 'treino',
   receita: 'receita'
 } as const
@@ -481,76 +481,76 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    funcionarios: {
-      payload: Prisma.$funcionariosPayload<ExtArgs>
-      fields: Prisma.funcionariosFieldRefs
+    Funcionarios: {
+      payload: Prisma.$FuncionariosPayload<ExtArgs>
+      fields: Prisma.FuncionariosFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.funcionariosFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$funcionariosPayload> | null
+          args: Prisma.FuncionariosFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FuncionariosPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.funcionariosFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$funcionariosPayload>
+          args: Prisma.FuncionariosFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FuncionariosPayload>
         }
         findFirst: {
-          args: Prisma.funcionariosFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$funcionariosPayload> | null
+          args: Prisma.FuncionariosFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FuncionariosPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.funcionariosFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$funcionariosPayload>
+          args: Prisma.FuncionariosFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FuncionariosPayload>
         }
         findMany: {
-          args: Prisma.funcionariosFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$funcionariosPayload>[]
+          args: Prisma.FuncionariosFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FuncionariosPayload>[]
         }
         create: {
-          args: Prisma.funcionariosCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$funcionariosPayload>
+          args: Prisma.FuncionariosCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FuncionariosPayload>
         }
         createMany: {
-          args: Prisma.funcionariosCreateManyArgs<ExtArgs>
+          args: Prisma.FuncionariosCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.funcionariosCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$funcionariosPayload>[]
+          args: Prisma.FuncionariosCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FuncionariosPayload>[]
         }
         delete: {
-          args: Prisma.funcionariosDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$funcionariosPayload>
+          args: Prisma.FuncionariosDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FuncionariosPayload>
         }
         update: {
-          args: Prisma.funcionariosUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$funcionariosPayload>
+          args: Prisma.FuncionariosUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FuncionariosPayload>
         }
         deleteMany: {
-          args: Prisma.funcionariosDeleteManyArgs<ExtArgs>
+          args: Prisma.FuncionariosDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.funcionariosUpdateManyArgs<ExtArgs>
+          args: Prisma.FuncionariosUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.funcionariosUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$funcionariosPayload>[]
+          args: Prisma.FuncionariosUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FuncionariosPayload>[]
         }
         upsert: {
-          args: Prisma.funcionariosUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$funcionariosPayload>
+          args: Prisma.FuncionariosUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FuncionariosPayload>
         }
         aggregate: {
           args: Prisma.FuncionariosAggregateArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.AggregateFuncionarios>
         }
         groupBy: {
-          args: Prisma.funcionariosGroupByArgs<ExtArgs>
+          args: Prisma.FuncionariosGroupByArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.FuncionariosGroupByOutputType>[]
         }
         count: {
-          args: Prisma.funcionariosCountArgs<ExtArgs>
+          args: Prisma.FuncionariosCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.FuncionariosCountAggregateOutputType> | number
         }
       }
@@ -748,7 +748,8 @@ export const AlunosScalarFieldEnum = {
   cpf: 'cpf',
   plano: 'plano',
   updatedAt: 'updatedAt',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  funcionarioId: 'funcionarioId'
 } as const
 
 export type AlunosScalarFieldEnum = (typeof AlunosScalarFieldEnum)[keyof typeof AlunosScalarFieldEnum]
@@ -757,7 +758,9 @@ export type AlunosScalarFieldEnum = (typeof AlunosScalarFieldEnum)[keyof typeof 
 export const FuncionariosScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
+  adm: 'adm',
   email: 'email',
+  senha: 'senha',
   idade: 'idade',
   dataNascimento: 'dataNascimento',
   cpf: 'cpf',
@@ -840,6 +843,13 @@ export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -960,7 +970,7 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   alunos?: Prisma.alunosOmit
-  funcionarios?: Prisma.funcionariosOmit
+  funcionarios?: Prisma.FuncionariosOmit
   treino?: Prisma.treinoOmit
   receita?: Prisma.receitaOmit
 }

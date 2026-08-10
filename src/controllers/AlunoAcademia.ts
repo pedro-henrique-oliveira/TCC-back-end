@@ -30,8 +30,7 @@ export default {
             ? new Date(dataNascimento)
             : undefined,
           plano,
-        },
-      });
+      }});
 
       return response.status(201).json(user);
     } catch (e) {
@@ -121,15 +120,13 @@ export default {
 matricular: async (request: Request, response: Response) => {
   try {
     const alunoId = Number(request.params.id);
-    const { funcionariosIds } = request.body;
+    const { funcionariosId } = request.body;
 
     if (
-      !funcionariosIds ||
-      !Array.isArray(funcionariosIds) ||
-      funcionariosIds.length === 0
+      !funcionariosId
     ) {
       return response.status(400).json({
-        error: "funcionariosIds é obrigatório",
+        error: "funcionariosId é obrigatório",
       });
     }
 
@@ -150,14 +147,14 @@ matricular: async (request: Request, response: Response) => {
         id: alunoId,
       },
       data: {
-        funcionarios: {
-          connect: funcionariosIds.map((funcionarioId: number) => ({
-            id: Number(funcionarioId),
-          })),
+        funcionario: {
+          connect: {
+            id: Number(funcionariosId),
+          }
         },
       },
       include: {
-        funcionarios: true,
+        funcionario: true,
       },
     });
 
@@ -170,15 +167,13 @@ matricular: async (request: Request, response: Response) => {
 desmatricular: async (request: Request, response: Response) => {
   try {
     const alunoId = Number(request.params.id);
-    const { funcionariosIds } = request.body;
+    const { funcionariosId } = request.body;
 
     if (
-      !funcionariosIds ||
-      !Array.isArray(funcionariosIds) ||
-      funcionariosIds.length === 0
+      !funcionariosId 
     ) {
       return response.status(400).json({
-        error: "funcionariosIds é obrigatório",
+        error: "funcionariosId é obrigatório",
       });
     }
 
@@ -187,7 +182,7 @@ desmatricular: async (request: Request, response: Response) => {
         id: alunoId,
       },
       include: {
-        funcionarios: true,
+        funcionario: true,
       },
     });
 
@@ -197,30 +192,23 @@ desmatricular: async (request: Request, response: Response) => {
       });
     }
 
-    const funcionariosQueFicam = aluno.funcionarios
-      .filter(
-        (funcionario) =>
-          !funcionariosIds.includes(funcionario.id)
-      )
-      .map((funcionario) => ({
-        id: funcionario.id,
-      }));
-
-    const alunoAtualizado = await prisma.alunos.update({
+    const funcionarioAtualizado = await prisma.funcionarios.update({
       where: {
         id: alunoId,
       },
       data: {
-        funcionarios: {
-          set: funcionariosQueFicam,
-        },
+        alunos: {
+          disconnect: {
+            id: Number(alunoId),
+          }
+        }
       },
       include: {
-        funcionarios: true,
+        alunos: true,
       },
     });
 
-    return response.status(200).json(alunoAtualizado);
+    return response.status(200).json(funcionarioAtualizado);
   } catch (e) {
     return handleError(e, response);
   }

@@ -22,6 +22,43 @@ const alunoSchema = {
   },
 };
 
+const treinoSchema = {
+  type: "object",
+  properties: {
+    id: { type: "integer", example: 1 },
+    nome: { type: "string", example: "Treino de Peito" },
+    descricao: {
+      type: "string",
+      example: "Treino focado em peito e tríceps",
+    },
+    dificuldade: {
+      type: "string",
+      example: "Intermediário",
+    },
+    duracao: {
+      type: "integer",
+      example: 60,
+      description: "Duração do treino em minutos",
+    },
+    tipoTreino: {
+      type: "string",
+      example: "Hipertrofia",
+    },
+    alunoId: {
+      type: "integer",
+      example: 1,
+    },
+    createdAt: {
+      type: "string",
+      format: "date-time",
+    },
+    updatedAt: {
+      type: "string",
+      format: "date-time",
+    },
+  },
+};
+
 const errorSchema = {
   type: "string",
   example: "Unique constraint failed on the constraint.",
@@ -457,7 +494,248 @@ const matriculasRoutesWithId = {
   },
 };
 
+const treinosRoutesNoId = {
+  get: {
+    tags: ["Treinos"],
+    summary: "Lista de treinos",
+    responses: {
+      200: {
+        description: "Lista de treinos",
+        content: {
+          "application/json": {
+            schema: {
+              type: "array",
+              items: {
+                $ref: "#/components/schemas/Treino",
+              },
+            },
+            example: [
+              {
+                id: 1,
+                nome: "Treino de Peito",
+                descricao: "Treino focado em peito e tríceps",
+                dificuldade: "Intermediário",
+                duracao: 60,
+                tipoTreino: "Hipertrofia",
+                alunoId: 1,
+                createdAt: "2026-08-06T10:00:00.000Z",
+                updatedAt: "2026-08-06T10:00:00.000Z",
+              },
+            ],
+          },
+        },
+      },
+      ...prismaErrorResponses,
+    },
+  },
 
+  post: {
+    tags: ["Treinos"],
+    summary: "Criar treino",
+    requestBody: {
+      required: true,
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            required: [
+              "nome",
+              "descricao",
+              "dificuldade",
+              "duracao",
+              "tipoTreino",
+              "alunoId",
+            ],
+            properties: {
+              nome: {
+                type: "string",
+                example: "Treino de Peito",
+              },
+              descricao: {
+                type: "string",
+                example: "Treino focado em peito e tríceps",
+              },
+              dificuldade: {
+                type: "string",
+                example: "Intermediário",
+              },
+              duracao: {
+                type: "integer",
+                example: 60,
+              },
+              tipoTreino: {
+                type: "string",
+                example: "Hipertrofia",
+              },
+              alunoId: {
+                type: "integer",
+                example: 1,
+              },
+            },
+          },
+          example: {
+            nome: "Treino de Peito",
+            descricao: "Treino focado em peito e tríceps",
+            dificuldade: "Intermediário",
+            duracao: 60,
+            tipoTreino: "Hipertrofia",
+            alunoId: 1,
+          },
+        },
+      },
+    },
+    responses: {
+      201: {
+        description: "Treino criado",
+        content: {
+          "application/json": {
+            schema: {
+              $ref: "#/components/schemas/Treino",
+            },
+          },
+        },
+      },
+      ...prismaErrorResponses,
+    },
+  },
+};
+
+const treinosRoutesWithId = {
+  get: {
+    tags: ["Treinos"],
+    summary: "Buscar treino por ID",
+    parameters: [
+      {
+        name: "id",
+        in: "path",
+        required: true,
+        description: "ID do treino",
+        schema: {
+          type: "integer",
+        },
+        example: 1,
+      },
+    ],
+    responses: {
+      200: {
+        description: "Treino encontrado",
+        content: {
+          "application/json": {
+            schema: {
+              $ref: "#/components/schemas/Treino",
+            },
+          },
+        },
+      },
+      ...prismaErrorResponses,
+    },
+  },
+
+  put: {
+    tags: ["Treinos"],
+    summary: "Atualizar treino",
+    parameters: [
+      {
+        name: "id",
+        in: "path",
+        required: true,
+        description: "ID do treino",
+        schema: {
+          type: "integer",
+        },
+        example: 1,
+      },
+    ],
+    requestBody: {
+      required: true,
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              nome: {
+                type: "string",
+                example: "Treino de Peito Atualizado",
+              },
+              descricao: {
+                type: "string",
+                example: "Treino atualizado para peito e tríceps",
+              },
+              dificuldade: {
+                type: "string",
+                example: "Avançado",
+              },
+              duracao: {
+                type: "integer",
+                example: 75,
+              },
+              tipoTreino: {
+                type: "string",
+                example: "Hipertrofia",
+              },
+              alunoId: {
+                type: "integer",
+                example: 1,
+              },
+            },
+          },
+          example: {
+            nome: "Treino de Peito Atualizado",
+            descricao: "Treino atualizado para peito e tríceps",
+            dificuldade: "Avançado",
+            duracao: 75,
+            tipoTreino: "Hipertrofia",
+            alunoId: 1,
+          },
+        },
+      },
+    },
+    responses: {
+      200: {
+        description: "Treino atualizado",
+        content: {
+          "application/json": {
+            schema: {
+              $ref: "#/components/schemas/Treino",
+            },
+          },
+        },
+      },
+      ...prismaErrorResponses,
+    },
+  },
+
+  delete: {
+    tags: ["Treinos"],
+    summary: "Remover treino",
+    parameters: [
+      {
+        name: "id",
+        in: "path",
+        required: true,
+        description: "ID do treino",
+        schema: {
+          type: "integer",
+        },
+        example: 1,
+      },
+    ],
+    responses: {
+      200: {
+        description: "Treino removido",
+        content: {
+          "application/json": {
+            schema: {
+              type: "string",
+            },
+            example: "Treino removido com sucesso.",
+          },
+        },
+      },
+      ...prismaErrorResponses,
+    },
+  },
+};
 
 const funcionariosRoutesNoId = {
   get: {
@@ -843,15 +1121,22 @@ export default {
     },
   ],
   paths: {
-    "/": initialRoute,
-    "/alunos": alunosRoutesNoId,
-    "/alunos/{id}": alunosRoutesWithId,
-    "/matriculas/{id}": matriculasRoutesWithId,
-    "/funcionarios": funcionariosRoutesNoId,
-    "/funcionarios/{id}": funcionariosRoutesWithId,
-    "/receitas": receitasRoutesNoId,
-    "/receitas/{id}": receitasRoutesWithId,
-  },
+  "/": initialRoute,
+
+  "/alunos": alunosRoutesNoId,
+  "/alunos/{id}": alunosRoutesWithId,
+
+  "/matriculas/{id}": matriculasRoutesWithId,
+
+  "/funcionarios": funcionariosRoutesNoId,
+  "/funcionarios/{id}": funcionariosRoutesWithId,
+
+  "/receitas": receitasRoutesNoId,
+  "/receitas/{id}": receitasRoutesWithId,
+
+  "/treinos": treinosRoutesNoId,
+  "/treinos/{id}": treinosRoutesWithId,
+},
   tags: [
     {
       name: "Rota Inicial",
@@ -866,6 +1151,10 @@ export default {
       description: "Gerenciamento das matrículas dos alunos",
     },
     {
+    name: "Treinos",
+    description: "CRUD de treinos dos alunos",
+    },
+    {
       name: "Funcionários",
       description: "CRUD de funcionários",
     },
@@ -876,11 +1165,12 @@ export default {
   ],
   components: {
     schemas: {
-      Aluno: alunoSchema,
-      Funcionario: funcionarioSchema,
-      Receita: receitaSchema,
-      Erro: errorSchema,
-    },
+    Aluno: alunoSchema,
+    Funcionario: funcionarioSchema,
+    Receita: receitaSchema,
+    Treino: treinoSchema,
+    Erro: errorSchema,
+  },
     securitySchemes: {
       bearerAuth: {
         type: "http",

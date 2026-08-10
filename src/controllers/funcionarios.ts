@@ -8,6 +8,7 @@ export default {
       const {
         nome,
         email,
+        senha,
         idade,
         dataNascimento,
         cpf,
@@ -16,7 +17,7 @@ export default {
         cargo,
       } = request.body;
 
-      if (!nome || !email || idade === undefined || !dataNascimento || !cpf || !clt || !turno || !cargo) {
+      if (!nome || !email || !senha || idade === undefined || !dataNascimento || !cpf || !clt || !turno || !cargo) {
         return response.status(400).json({
           error: "Dados do Funcionario incompletos",    
         });
@@ -26,6 +27,7 @@ export default {
         data: {
           nome,
           email,
+          senha,
           idade: Number(idade),
           dataNascimento: dataNascimento
             ? new Date(dataNascimento)
@@ -34,6 +36,7 @@ export default {
           clt,
           turno,
           cargo,
+          
         },
       });
 

@@ -23,10 +23,10 @@ export * from './enums.ts';
  */
 export type alunos = Prisma.alunosModel
 /**
- * Model funcionarios
+ * Model Funcionarios
  * 
  */
-export type funcionarios = Prisma.funcionariosModel
+export type Funcionarios = Prisma.FuncionariosModel
 /**
  * Model treino
  * 

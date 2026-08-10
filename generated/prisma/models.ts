@@ -9,7 +9,7 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/alunos.ts'
-export type * from './models/funcionarios.ts'
+export type * from './models/Funcionarios.ts'
 export type * from './models/treino.ts'
 export type * from './models/receita.ts'
 export type * from './commonInputTypes.ts'

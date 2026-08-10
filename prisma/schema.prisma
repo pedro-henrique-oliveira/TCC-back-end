@@ -23,20 +23,25 @@ model alunos {
   updatedAt      DateTime       @updatedAt
   createdAt      DateTime       @default(now())
   treinos        treino[]
+  funcionarioId Int? 
+  funcionario   Funcionarios?   @relation(fields: [funcionarioId], references: [id])
 }
 
 model Funcionarios {
-  id             Int       @id @default(autoincrement())
+  id             Int      @id @default(autoincrement())
   nome           String
+  adm            Boolean @default(false)
   email          String
+  senha          String
   idade          Int?
   dataNascimento DateTime?
   cpf            String
   clt            String
   turno          String
   cargo          String
-  updatedAt      DateTime  @updatedAt
-  createdAt      DateTime  @default(now())
+  updatedAt      DateTime @updatedAt
+  createdAt      DateTime @default(now())
+  alunos alunos[]
 }
 
 model treino {
