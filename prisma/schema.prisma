@@ -19,18 +19,21 @@ model alunos {
   dataNascimento DateTime?
   email          String
   cpf            String
+  senha          String?
   plano          String
+  ultimoAcesso   DateTime?
   updatedAt      DateTime       @updatedAt
   createdAt      DateTime       @default(now())
   treinos        treino[]
-  funcionarioId Int? 
-  funcionario   Funcionarios?   @relation(fields: [funcionarioId], references: [id])
+  presencas      presenca[]
+  funcionarioId  Int? 
+  funcionario    Funcionarios?  @relation(fields: [funcionarioId], references: [id])
 }
 
 model Funcionarios {
   id             Int      @id @default(autoincrement())
   nome           String
-  adm            Boolean @default(false)
+  adm            Boolean  @default(false)
   email          String
   senha          String
   idade          Int?
@@ -41,7 +44,7 @@ model Funcionarios {
   cargo          String
   updatedAt      DateTime @updatedAt
   createdAt      DateTime @default(now())
-  alunos alunos[]
+  alunos         alunos[]
 }
 
 model treino {
@@ -67,3 +70,23 @@ model receita {
   updatedAt      DateTime @updatedAt
   createdAt      DateTime @default(now())
 }
+
+model despesa {
+  id             Int      @id @default(autoincrement())
+  descricao      String
+  valor          Float
+  categoria      String   // LUZ, AGUA, INTERNET, MANUTENCAO, OUTROS
+  dataVencimento DateTime
+  dataPagamento  DateTime?
+  status         String   // PAGO, PENDENTE
+  updatedAt      DateTime @updatedAt
+  createdAt      DateTime @default(now())
+}
+
+model presenca {
+  id        Int      @id @default(autoincrement())
+  alunoId   Int
+  aluno     alunos   @relation(fields: [alunoId], references: [id])
+  dataHora  DateTime @default(now())
+}
+

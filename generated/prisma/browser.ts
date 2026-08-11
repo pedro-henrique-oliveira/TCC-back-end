@@ -37,3 +37,13 @@ export type treino = Prisma.treinoModel
  * 
  */
 export type receita = Prisma.receitaModel
+/**
+ * Model despesa
+ * 
+ */
+export type despesa = Prisma.despesaModel
+/**
+ * Model presenca
+ * 
+ */
+export type presenca = Prisma.presencaModel

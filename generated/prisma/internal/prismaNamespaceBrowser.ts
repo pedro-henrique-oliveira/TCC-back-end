@@ -54,7 +54,9 @@ export const ModelName = {
   alunos: 'alunos',
   Funcionarios: 'Funcionarios',
   treino: 'treino',
-  receita: 'receita'
+  receita: 'receita',
+  despesa: 'despesa',
+  presenca: 'presenca'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -77,7 +79,9 @@ export const AlunosScalarFieldEnum = {
   dataNascimento: 'dataNascimento',
   email: 'email',
   cpf: 'cpf',
+  senha: 'senha',
   plano: 'plano',
+  ultimoAcesso: 'ultimoAcesso',
   updatedAt: 'updatedAt',
   createdAt: 'createdAt',
   funcionarioId: 'funcionarioId'
@@ -132,6 +136,30 @@ export const ReceitaScalarFieldEnum = {
 } as const
 
 export type ReceitaScalarFieldEnum = (typeof ReceitaScalarFieldEnum)[keyof typeof ReceitaScalarFieldEnum]
+
+
+export const DespesaScalarFieldEnum = {
+  id: 'id',
+  descricao: 'descricao',
+  valor: 'valor',
+  categoria: 'categoria',
+  dataVencimento: 'dataVencimento',
+  dataPagamento: 'dataPagamento',
+  status: 'status',
+  updatedAt: 'updatedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type DespesaScalarFieldEnum = (typeof DespesaScalarFieldEnum)[keyof typeof DespesaScalarFieldEnum]
+
+
+export const PresencaScalarFieldEnum = {
+  id: 'id',
+  alunoId: 'alunoId',
+  dataHora: 'dataHora'
+} as const
+
+export type PresencaScalarFieldEnum = (typeof PresencaScalarFieldEnum)[keyof typeof PresencaScalarFieldEnum]
 
 
 export const SortOrder = {

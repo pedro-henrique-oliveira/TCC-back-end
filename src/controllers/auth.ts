@@ -15,58 +15,147 @@ export default {
         });
       }
 
-      const Funcionario = await prisma.funcionarios.findFirst({
+      // 1. Tentar autenticar como Funcionário ou Admin
+      const funcionario = await prisma.funcionarios.findFirst({
+        where: { email },
+      });
+
+      if (funcionario) {
+        let senhaValida = false;
+        try {
+          senhaValida = await bcrypt.compare(senha, funcionario.senha);
+        } catch {
+          senhaValida = funcionario.senha === senha;
+        }
+
+        if (!senhaValida && funcionario.senha === senha) {
+          senhaValida = true;
+        }
+
+        if (!senhaValida) {
+          return response.status(401).json({
+            success: false,
+            message: "E-mail ou senha incorretos.",
+          });
+        }
+
+        const role = funcionario.adm ? "ADMIN" : "FUNCIONARIO";
+
+        const token = jwt.sign(
+          {
+            id: funcionario.id,
+            nome: funcionario.nome,
+            email: funcionario.email,
+            cargo: funcionario.cargo,
+            role,
+          },
+          process.env.JWT_SECRET || "secreto_tcc_gymflow",
+          { expiresIn: "1d" }
+        );
+
+        return response.status(200).json({
+          success: true,
+          message: "Login de funcionário realizado com sucesso.",
+          token,
+          user: {
+            id: funcionario.id,
+            nome: funcionario.nome,
+            email: funcionario.email,
+            cargo: funcionario.cargo,
+            adm: funcionario.adm,
+            role,
+          },
+          funcionario: {
+            id: funcionario.id,
+            nome: funcionario.nome,
+            email: funcionario.email,
+            cargo: funcionario.cargo,
+            adm: funcionario.adm,
+          },
+        });
+      }
+
+      // 2. Tentar autenticar como Aluno
+      const aluno = await prisma.alunos.findFirst({
         where: {
-          email,
+          OR: [{ email }, { cpf: email }],
         },
       });
 
-      if (!Funcionario) {
-        return response.status(401).json({
-          success: false,
-          message: "E-mail ou senha incorretos.",
+      if (aluno) {
+        let senhaValida = true;
+        if (aluno.senha) {
+          try {
+            senhaValida = await bcrypt.compare(senha, aluno.senha);
+          } catch {
+            senhaValida = aluno.senha === senha;
+          }
+          if (!senhaValida && aluno.senha === senha) {
+            senhaValida = true;
+          }
+        } else {
+          // Se o aluno ainda não tem senha cadastrada, define a senha informada
+          const senhaHash = await bcrypt.hash(senha, 10);
+          await prisma.alunos.update({
+            where: { id: aluno.id },
+            data: { senha: senhaHash },
+          });
+        }
+
+        if (!senhaValida) {
+          return response.status(401).json({
+            success: false,
+            message: "E-mail ou senha incorretos.",
+          });
+        }
+
+        // Registrar presença do aluno automaticamente ao logar
+        await prisma.presenca.create({
+          data: { alunoId: aluno.id },
+        });
+
+        await prisma.alunos.update({
+          where: { id: aluno.id },
+          data: { ultimoAcesso: new Date() },
+        });
+
+        const token = jwt.sign(
+          {
+            id: aluno.id,
+            nome: aluno.nome,
+            email: aluno.email,
+            role: "ALUNO",
+          },
+          process.env.JWT_SECRET || "secreto_tcc_gymflow",
+          { expiresIn: "1d" }
+        );
+
+        return response.status(200).json({
+          success: true,
+          message: "Login de aluno realizado com sucesso. Presença registrada!",
+          token,
+          user: {
+            id: aluno.id,
+            nome: aluno.nome,
+            email: aluno.email,
+            plano: aluno.plano,
+            role: "ALUNO",
+          },
+          aluno: {
+            id: aluno.id,
+            nome: aluno.nome,
+            email: aluno.email,
+            plano: aluno.plano,
+          },
         });
       }
 
-      const senhaValida = await bcrypt.compare(
-        senha,
-        Funcionario.senha,
-      );
-
-      if (!senhaValida) {
-        return response.status(401).json({
-          success: false,
-          message: "E-mail ou senha incorretos.",
-        });
-      }
-
-      const token = jwt.sign(
-        {
-          id: Funcionario.id,
-          nome: Funcionario.nome,
-          email: Funcionario.email,
-          cargo: Funcionario.cargo,
-        },
-        process.env.JWT_SECRET!,
-        {
-          expiresIn: "1d",
-        },
-      );
-
-      return response.status(200).json({
-        success: true,
-        message: "Login realizado com sucesso.",
-        token,
-        Funcionario: {
-          id: Funcionario.id,
-          nome: Funcionario.nome,
-          email: Funcionario.email,
-          cargo: Funcionario.cargo,
-        },
+      return response.status(401).json({
+        success: false,
+        message: "E-mail ou senha incorretos.",
       });
     } catch (error) {
       console.error("Erro no login:", error);
-
       return response.status(500).json({
         success: false,
         message: "Erro interno do servidor.",

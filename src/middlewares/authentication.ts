@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import { funcionarios } from "../../generated/prisma/client";
+import { Funcionarios } from "../../generated/prisma/client";
 
 export function authentication(
   request: Request,
@@ -29,7 +29,7 @@ export function authentication(
       request.body = {};
     }
 
-    request.body.user = decoded as funcionarios;
+    request.body.user = decoded as Funcionarios;
 
     next();
   } catch (error) {
