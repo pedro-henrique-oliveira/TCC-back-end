@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { prisma } from "../../config/prisma";
+import { prisma } from "../../config/prisma.js";
 
 export default {
   // Listar todas as despesas
@@ -28,15 +28,15 @@ export default {
       const receitas = await prisma.receita.findMany();
       const despesas = await prisma.despesa.findMany();
 
-      const totalReceitas = receitas.reduce((acc, r) => {
+      const totalReceitas = receitas.reduce((acc: number, r: { valorPagamento: string; }) => {
         const val = parseFloat(r.valorPagamento.replace(/[^0-9,.-]/g, "").replace(",", ".")) || 0;
         return acc + val;
       }, 0);
 
-      const totalDespesas = despesas.reduce((acc, d) => acc + d.valor, 0);
+      const totalDespesas = despesas.reduce((acc: any, d: { valor: any; }) => acc + d.valor, 0);
 
       // Despesas por categoria (LUZ, AGUA, INTERNET, OUTROS)
-      const despesasPorCategoria = despesas.reduce((acc: Record<string, number>, d) => {
+      const despesasPorCategoria = despesas.reduce((acc: Record<string, number>, d: { categoria: string; valor: number; }) => {
         const cat = d.categoria.toUpperCase();
         acc[cat] = (acc[cat] || 0) + d.valor;
         return acc;

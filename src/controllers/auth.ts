@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { prisma } from "../../config/prisma";
+import { prisma } from "../../config/prisma.js";
 
 export default {
   login: async (request: Request, response: Response) => {

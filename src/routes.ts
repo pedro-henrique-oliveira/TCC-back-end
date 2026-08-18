@@ -1,21 +1,26 @@
 import { Router, type Request, type Response } from "express";
-import AlunoAcademia from "./controllers/AlunoAcademia";
-import Funcionarios from "./controllers/funcionarios";
-import receita from "./controllers/receita";
-import treino from "./controllers/treinos";
-import despesas from "./controllers/despesas";
-import presencas from "./controllers/presencas";
-import { authentication } from "./middlewares/authentication";
-import auth from "./controllers/auth";
+import AlunoAcademia from "./controllers/AlunoAcademia.js";
+import auth from "./controllers/auth.js";
+import despesas from "./controllers/despesas.js";
+import Funcionarios from "./controllers/funcionarios.js";
+import planoController from "./controllers/planoController.js";
+import presencas from "./controllers/presencas.js";
+import receita from "./controllers/receita.js";
+import treino from "./controllers/treinos.js";
+import { authentication } from "./middlewares/authentication.js";
 
 const routes = Router();
 
 routes.get("/", (_request: Request, response: Response) =>
-  response.status(200).json({ success: true, name: "GymFlow API", version: "1.0.0" })
+  response
+    .status(200)
+    .json({ success: true, name: "GymFlow API", version: "1.0.0" }),
 );
 
 // Autenticação Unificada
 routes.post("/login", auth.login);
+
+routes.post("/solicitar-plano", planoController.solicitarPlano);
 
 // Alunos
 routes.get("/alunos", authentication, AlunoAcademia.list);
@@ -32,7 +37,7 @@ routes.put("/treinos/:id", authentication, treino.update);
 routes.delete("/treinos/:id", authentication, treino.delete);
 
 // Funcionários
-routes.get("/funcionarios", authentication, Funcionarios.list);
+routes.get("/funcionarios",  Funcionarios.list);
 routes.post("/funcionarios", authentication, Funcionarios.create);
 routes.get("/funcionarios/:id", authentication, Funcionarios.getById);
 routes.put("/funcionarios/:id", authentication, Funcionarios.update);
@@ -58,6 +63,10 @@ routes.get("/presencas/hoje", authentication, presencas.hoje);
 
 // Matrículas
 routes.post("/matricular/:id", authentication, AlunoAcademia.matricular);
-routes.delete("/desmatricular/:id", authentication, AlunoAcademia.desmatricular);
+routes.delete(
+  "/desmatricular/:id",
+  authentication,
+  AlunoAcademia.desmatricular,
+);
 
 export default routes;

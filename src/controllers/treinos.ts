@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import { prisma } from "../../config/prisma";
-import { handleError } from "../../helpers/hendleErro";
+import { prisma } from "../../config/prisma.js";
+import { handleError } from "../../helpers/hendleErro.js";
 
 export default {
   // CRIAR TREINO

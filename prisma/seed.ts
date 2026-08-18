@@ -1,5 +1,5 @@
-import { prisma } from "../config/prisma";
 import bcrypt from "bcrypt";
+import { prisma } from "../config/prisma.js";
 
 async function main() {
   console.log("Iniciando seed do banco de dados GymFlow...");
@@ -84,7 +84,8 @@ async function main() {
     data: [
       {
         nome: "Treino A - Peito e Tríceps",
-        descricao: "Supino reto 4x10, Supino inclinado 3x12, Tríceps corda 4x12",
+        descricao:
+          "Supino reto 4x10, Supino inclinado 3x12, Tríceps corda 4x12",
         dificuldade: "INTERMEDIARIO",
         duracao: 50,
         tipoTreino: "HIPERTROFIA",

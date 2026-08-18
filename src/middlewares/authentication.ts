@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from "express";
+import type { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { Funcionarios } from "../../generated/prisma/client";
+import type { Funcionarios } from "../../generated/prisma/client.js";
 
 export function authentication(
   request: Request,
@@ -22,7 +22,7 @@ export function authentication(
 
     const decoded = jwt.verify(
       token,
-      process.env.JWT_SECRET!,
+      process.env.JWT_SECRET || "secreto_tcc_gymflow",
     );
 
     if (!request.body) {
