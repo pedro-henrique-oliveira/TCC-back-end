@@ -4,19 +4,19 @@
 // biome-ignore-all lint: generated file
 // @ts-nocheck 
 /*
- * This file exports the `funcionarios` model and its related types.
+ * This file exports the `Funcionarios` model and its related types.
  *
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.ts"
-import type * as Prisma from "../internal/prismaNamespace.ts"
+import type * as $Enums from "../enums.js"
+import type * as Prisma from "../internal/prismaNamespace.js"
 
 /**
- * Model funcionarios
+ * Model Funcionarios
  * 
  */
-export type funcionariosModel = runtime.Types.Result.DefaultSelection<Prisma.$funcionariosPayload>
+export type FuncionariosModel = runtime.Types.Result.DefaultSelection<Prisma.$FuncionariosPayload>
 
 export type AggregateFuncionarios = {
   _count: FuncionariosCountAggregateOutputType | null
@@ -39,7 +39,9 @@ export type FuncionariosSumAggregateOutputType = {
 export type FuncionariosMinAggregateOutputType = {
   id: number | null
   nome: string | null
+  adm: boolean | null
   email: string | null
+  senha: string | null
   idade: number | null
   dataNascimento: Date | null
   cpf: string | null
@@ -53,7 +55,9 @@ export type FuncionariosMinAggregateOutputType = {
 export type FuncionariosMaxAggregateOutputType = {
   id: number | null
   nome: string | null
+  adm: boolean | null
   email: string | null
+  senha: string | null
   idade: number | null
   dataNascimento: Date | null
   cpf: string | null
@@ -67,7 +71,9 @@ export type FuncionariosMaxAggregateOutputType = {
 export type FuncionariosCountAggregateOutputType = {
   id: number
   nome: number
+  adm: number
   email: number
+  senha: number
   idade: number
   dataNascimento: number
   cpf: number
@@ -93,7 +99,9 @@ export type FuncionariosSumAggregateInputType = {
 export type FuncionariosMinAggregateInputType = {
   id?: true
   nome?: true
+  adm?: true
   email?: true
+  senha?: true
   idade?: true
   dataNascimento?: true
   cpf?: true
@@ -107,7 +115,9 @@ export type FuncionariosMinAggregateInputType = {
 export type FuncionariosMaxAggregateInputType = {
   id?: true
   nome?: true
+  adm?: true
   email?: true
+  senha?: true
   idade?: true
   dataNascimento?: true
   cpf?: true
@@ -121,7 +131,9 @@ export type FuncionariosMaxAggregateInputType = {
 export type FuncionariosCountAggregateInputType = {
   id?: true
   nome?: true
+  adm?: true
   email?: true
+  senha?: true
   idade?: true
   dataNascimento?: true
   cpf?: true
@@ -135,37 +147,37 @@ export type FuncionariosCountAggregateInputType = {
 
 export type FuncionariosAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Filter which funcionarios to aggregate.
+   * Filter which Funcionarios to aggregate.
    */
-  where?: Prisma.funcionariosWhereInput
+  where?: Prisma.FuncionariosWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of funcionarios to fetch.
+   * Determine the order of Funcionarios to fetch.
    */
-  orderBy?: Prisma.funcionariosOrderByWithRelationInput | Prisma.funcionariosOrderByWithRelationInput[]
+  orderBy?: Prisma.FuncionariosOrderByWithRelationInput | Prisma.FuncionariosOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
    * Sets the start position
    */
-  cursor?: Prisma.funcionariosWhereUniqueInput
+  cursor?: Prisma.FuncionariosWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` funcionarios from the position of the cursor.
+   * Take `±n` Funcionarios from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` funcionarios.
+   * Skip the first `n` Funcionarios.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Count returned funcionarios
+   * Count returned Funcionarios
   **/
   _count?: true | FuncionariosCountAggregateInputType
   /**
@@ -205,11 +217,11 @@ export type GetFuncionariosAggregateType<T extends FuncionariosAggregateArgs> = 
 
 
 
-export type funcionariosGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.funcionariosWhereInput
-  orderBy?: Prisma.funcionariosOrderByWithAggregationInput | Prisma.funcionariosOrderByWithAggregationInput[]
+export type FuncionariosGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FuncionariosWhereInput
+  orderBy?: Prisma.FuncionariosOrderByWithAggregationInput | Prisma.FuncionariosOrderByWithAggregationInput[]
   by: Prisma.FuncionariosScalarFieldEnum[] | Prisma.FuncionariosScalarFieldEnum
-  having?: Prisma.funcionariosScalarWhereWithAggregatesInput
+  having?: Prisma.FuncionariosScalarWhereWithAggregatesInput
   take?: number
   skip?: number
   _count?: FuncionariosCountAggregateInputType | true
@@ -222,7 +234,9 @@ export type funcionariosGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 export type FuncionariosGroupByOutputType = {
   id: number
   nome: string
+  adm: boolean
   email: string
+  senha: string
   idade: number | null
   dataNascimento: Date | null
   cpf: string
@@ -238,7 +252,7 @@ export type FuncionariosGroupByOutputType = {
   _max: FuncionariosMaxAggregateOutputType | null
 }
 
-export type GetFuncionariosGroupByPayload<T extends funcionariosGroupByArgs> = Prisma.PrismaPromise<
+export type GetFuncionariosGroupByPayload<T extends FuncionariosGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<FuncionariosGroupByOutputType, T['by']> &
       {
@@ -253,28 +267,32 @@ export type GetFuncionariosGroupByPayload<T extends funcionariosGroupByArgs> = P
 
 
 
-export type funcionariosWhereInput = {
-  AND?: Prisma.funcionariosWhereInput | Prisma.funcionariosWhereInput[]
-  OR?: Prisma.funcionariosWhereInput[]
-  NOT?: Prisma.funcionariosWhereInput | Prisma.funcionariosWhereInput[]
-  id?: Prisma.IntFilter<"funcionarios"> | number
-  nome?: Prisma.StringFilter<"funcionarios"> | string
-  email?: Prisma.StringFilter<"funcionarios"> | string
-  idade?: Prisma.IntNullableFilter<"funcionarios"> | number | null
-  dataNascimento?: Prisma.DateTimeNullableFilter<"funcionarios"> | Date | string | null
-  cpf?: Prisma.StringFilter<"funcionarios"> | string
-  clt?: Prisma.StringFilter<"funcionarios"> | string
-  turno?: Prisma.StringFilter<"funcionarios"> | string
-  cargo?: Prisma.StringFilter<"funcionarios"> | string
-  updatedAt?: Prisma.DateTimeFilter<"funcionarios"> | Date | string
-  createdAt?: Prisma.DateTimeFilter<"funcionarios"> | Date | string
+export type FuncionariosWhereInput = {
+  AND?: Prisma.FuncionariosWhereInput | Prisma.FuncionariosWhereInput[]
+  OR?: Prisma.FuncionariosWhereInput[]
+  NOT?: Prisma.FuncionariosWhereInput | Prisma.FuncionariosWhereInput[]
+  id?: Prisma.IntFilter<"Funcionarios"> | number
+  nome?: Prisma.StringFilter<"Funcionarios"> | string
+  adm?: Prisma.BoolFilter<"Funcionarios"> | boolean
+  email?: Prisma.StringFilter<"Funcionarios"> | string
+  senha?: Prisma.StringFilter<"Funcionarios"> | string
+  idade?: Prisma.IntNullableFilter<"Funcionarios"> | number | null
+  dataNascimento?: Prisma.DateTimeNullableFilter<"Funcionarios"> | Date | string | null
+  cpf?: Prisma.StringFilter<"Funcionarios"> | string
+  clt?: Prisma.StringFilter<"Funcionarios"> | string
+  turno?: Prisma.StringFilter<"Funcionarios"> | string
+  cargo?: Prisma.StringFilter<"Funcionarios"> | string
+  updatedAt?: Prisma.DateTimeFilter<"Funcionarios"> | Date | string
+  createdAt?: Prisma.DateTimeFilter<"Funcionarios"> | Date | string
   alunos?: Prisma.AlunosListRelationFilter
 }
 
-export type funcionariosOrderByWithRelationInput = {
+export type FuncionariosOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
+  adm?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  senha?: Prisma.SortOrder
   idade?: Prisma.SortOrderInput | Prisma.SortOrder
   dataNascimento?: Prisma.SortOrderInput | Prisma.SortOrder
   cpf?: Prisma.SortOrder
@@ -286,28 +304,32 @@ export type funcionariosOrderByWithRelationInput = {
   alunos?: Prisma.alunosOrderByRelationAggregateInput
 }
 
-export type funcionariosWhereUniqueInput = Prisma.AtLeast<{
+export type FuncionariosWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  AND?: Prisma.funcionariosWhereInput | Prisma.funcionariosWhereInput[]
-  OR?: Prisma.funcionariosWhereInput[]
-  NOT?: Prisma.funcionariosWhereInput | Prisma.funcionariosWhereInput[]
-  nome?: Prisma.StringFilter<"funcionarios"> | string
-  email?: Prisma.StringFilter<"funcionarios"> | string
-  idade?: Prisma.IntNullableFilter<"funcionarios"> | number | null
-  dataNascimento?: Prisma.DateTimeNullableFilter<"funcionarios"> | Date | string | null
-  cpf?: Prisma.StringFilter<"funcionarios"> | string
-  clt?: Prisma.StringFilter<"funcionarios"> | string
-  turno?: Prisma.StringFilter<"funcionarios"> | string
-  cargo?: Prisma.StringFilter<"funcionarios"> | string
-  updatedAt?: Prisma.DateTimeFilter<"funcionarios"> | Date | string
-  createdAt?: Prisma.DateTimeFilter<"funcionarios"> | Date | string
+  AND?: Prisma.FuncionariosWhereInput | Prisma.FuncionariosWhereInput[]
+  OR?: Prisma.FuncionariosWhereInput[]
+  NOT?: Prisma.FuncionariosWhereInput | Prisma.FuncionariosWhereInput[]
+  nome?: Prisma.StringFilter<"Funcionarios"> | string
+  adm?: Prisma.BoolFilter<"Funcionarios"> | boolean
+  email?: Prisma.StringFilter<"Funcionarios"> | string
+  senha?: Prisma.StringFilter<"Funcionarios"> | string
+  idade?: Prisma.IntNullableFilter<"Funcionarios"> | number | null
+  dataNascimento?: Prisma.DateTimeNullableFilter<"Funcionarios"> | Date | string | null
+  cpf?: Prisma.StringFilter<"Funcionarios"> | string
+  clt?: Prisma.StringFilter<"Funcionarios"> | string
+  turno?: Prisma.StringFilter<"Funcionarios"> | string
+  cargo?: Prisma.StringFilter<"Funcionarios"> | string
+  updatedAt?: Prisma.DateTimeFilter<"Funcionarios"> | Date | string
+  createdAt?: Prisma.DateTimeFilter<"Funcionarios"> | Date | string
   alunos?: Prisma.AlunosListRelationFilter
 }, "id">
 
-export type funcionariosOrderByWithAggregationInput = {
+export type FuncionariosOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
+  adm?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  senha?: Prisma.SortOrder
   idade?: Prisma.SortOrderInput | Prisma.SortOrder
   dataNascimento?: Prisma.SortOrderInput | Prisma.SortOrder
   cpf?: Prisma.SortOrder
@@ -316,33 +338,37 @@ export type funcionariosOrderByWithAggregationInput = {
   cargo?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  _count?: Prisma.funcionariosCountOrderByAggregateInput
-  _avg?: Prisma.funcionariosAvgOrderByAggregateInput
-  _max?: Prisma.funcionariosMaxOrderByAggregateInput
-  _min?: Prisma.funcionariosMinOrderByAggregateInput
-  _sum?: Prisma.funcionariosSumOrderByAggregateInput
+  _count?: Prisma.FuncionariosCountOrderByAggregateInput
+  _avg?: Prisma.FuncionariosAvgOrderByAggregateInput
+  _max?: Prisma.FuncionariosMaxOrderByAggregateInput
+  _min?: Prisma.FuncionariosMinOrderByAggregateInput
+  _sum?: Prisma.FuncionariosSumOrderByAggregateInput
 }
 
-export type funcionariosScalarWhereWithAggregatesInput = {
-  AND?: Prisma.funcionariosScalarWhereWithAggregatesInput | Prisma.funcionariosScalarWhereWithAggregatesInput[]
-  OR?: Prisma.funcionariosScalarWhereWithAggregatesInput[]
-  NOT?: Prisma.funcionariosScalarWhereWithAggregatesInput | Prisma.funcionariosScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"funcionarios"> | number
-  nome?: Prisma.StringWithAggregatesFilter<"funcionarios"> | string
-  email?: Prisma.StringWithAggregatesFilter<"funcionarios"> | string
-  idade?: Prisma.IntNullableWithAggregatesFilter<"funcionarios"> | number | null
-  dataNascimento?: Prisma.DateTimeNullableWithAggregatesFilter<"funcionarios"> | Date | string | null
-  cpf?: Prisma.StringWithAggregatesFilter<"funcionarios"> | string
-  clt?: Prisma.StringWithAggregatesFilter<"funcionarios"> | string
-  turno?: Prisma.StringWithAggregatesFilter<"funcionarios"> | string
-  cargo?: Prisma.StringWithAggregatesFilter<"funcionarios"> | string
-  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"funcionarios"> | Date | string
-  createdAt?: Prisma.DateTimeWithAggregatesFilter<"funcionarios"> | Date | string
+export type FuncionariosScalarWhereWithAggregatesInput = {
+  AND?: Prisma.FuncionariosScalarWhereWithAggregatesInput | Prisma.FuncionariosScalarWhereWithAggregatesInput[]
+  OR?: Prisma.FuncionariosScalarWhereWithAggregatesInput[]
+  NOT?: Prisma.FuncionariosScalarWhereWithAggregatesInput | Prisma.FuncionariosScalarWhereWithAggregatesInput[]
+  id?: Prisma.IntWithAggregatesFilter<"Funcionarios"> | number
+  nome?: Prisma.StringWithAggregatesFilter<"Funcionarios"> | string
+  adm?: Prisma.BoolWithAggregatesFilter<"Funcionarios"> | boolean
+  email?: Prisma.StringWithAggregatesFilter<"Funcionarios"> | string
+  senha?: Prisma.StringWithAggregatesFilter<"Funcionarios"> | string
+  idade?: Prisma.IntNullableWithAggregatesFilter<"Funcionarios"> | number | null
+  dataNascimento?: Prisma.DateTimeNullableWithAggregatesFilter<"Funcionarios"> | Date | string | null
+  cpf?: Prisma.StringWithAggregatesFilter<"Funcionarios"> | string
+  clt?: Prisma.StringWithAggregatesFilter<"Funcionarios"> | string
+  turno?: Prisma.StringWithAggregatesFilter<"Funcionarios"> | string
+  cargo?: Prisma.StringWithAggregatesFilter<"Funcionarios"> | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Funcionarios"> | Date | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Funcionarios"> | Date | string
 }
 
-export type funcionariosCreateInput = {
+export type FuncionariosCreateInput = {
   nome: string
+  adm?: boolean
   email: string
+  senha: string
   idade?: number | null
   dataNascimento?: Date | string | null
   cpf: string
@@ -351,13 +377,15 @@ export type funcionariosCreateInput = {
   cargo: string
   updatedAt?: Date | string
   createdAt?: Date | string
-  alunos?: Prisma.alunosCreateNestedManyWithoutFuncionariosInput
+  alunos?: Prisma.alunosCreateNestedManyWithoutFuncionarioInput
 }
 
-export type funcionariosUncheckedCreateInput = {
+export type FuncionariosUncheckedCreateInput = {
   id?: number
   nome: string
+  adm?: boolean
   email: string
+  senha: string
   idade?: number | null
   dataNascimento?: Date | string | null
   cpf: string
@@ -366,12 +394,14 @@ export type funcionariosUncheckedCreateInput = {
   cargo: string
   updatedAt?: Date | string
   createdAt?: Date | string
-  alunos?: Prisma.alunosUncheckedCreateNestedManyWithoutFuncionariosInput
+  alunos?: Prisma.alunosUncheckedCreateNestedManyWithoutFuncionarioInput
 }
 
-export type funcionariosUpdateInput = {
+export type FuncionariosUpdateInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
+  adm?: Prisma.BoolFieldUpdateOperationsInput | boolean
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  senha?: Prisma.StringFieldUpdateOperationsInput | string
   idade?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dataNascimento?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
@@ -380,13 +410,15 @@ export type funcionariosUpdateInput = {
   cargo?: Prisma.StringFieldUpdateOperationsInput | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  alunos?: Prisma.alunosUpdateManyWithoutFuncionariosNestedInput
+  alunos?: Prisma.alunosUpdateManyWithoutFuncionarioNestedInput
 }
 
-export type funcionariosUncheckedUpdateInput = {
+export type FuncionariosUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
+  adm?: Prisma.BoolFieldUpdateOperationsInput | boolean
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  senha?: Prisma.StringFieldUpdateOperationsInput | string
   idade?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dataNascimento?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
@@ -395,13 +427,15 @@ export type funcionariosUncheckedUpdateInput = {
   cargo?: Prisma.StringFieldUpdateOperationsInput | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  alunos?: Prisma.alunosUncheckedUpdateManyWithoutFuncionariosNestedInput
+  alunos?: Prisma.alunosUncheckedUpdateManyWithoutFuncionarioNestedInput
 }
 
-export type funcionariosCreateManyInput = {
+export type FuncionariosCreateManyInput = {
   id?: number
   nome: string
+  adm?: boolean
   email: string
+  senha: string
   idade?: number | null
   dataNascimento?: Date | string | null
   cpf: string
@@ -412,9 +446,11 @@ export type funcionariosCreateManyInput = {
   createdAt?: Date | string
 }
 
-export type funcionariosUpdateManyMutationInput = {
+export type FuncionariosUpdateManyMutationInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
+  adm?: Prisma.BoolFieldUpdateOperationsInput | boolean
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  senha?: Prisma.StringFieldUpdateOperationsInput | string
   idade?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dataNascimento?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
@@ -425,10 +461,12 @@ export type funcionariosUpdateManyMutationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type funcionariosUncheckedUpdateManyInput = {
+export type FuncionariosUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
+  adm?: Prisma.BoolFieldUpdateOperationsInput | boolean
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  senha?: Prisma.StringFieldUpdateOperationsInput | string
   idade?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dataNascimento?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
@@ -439,20 +477,17 @@ export type funcionariosUncheckedUpdateManyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type FuncionariosListRelationFilter = {
-  every?: Prisma.funcionariosWhereInput
-  some?: Prisma.funcionariosWhereInput
-  none?: Prisma.funcionariosWhereInput
+export type FuncionariosNullableScalarRelationFilter = {
+  is?: Prisma.FuncionariosWhereInput | null
+  isNot?: Prisma.FuncionariosWhereInput | null
 }
 
-export type funcionariosOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
-}
-
-export type funcionariosCountOrderByAggregateInput = {
+export type FuncionariosCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
+  adm?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  senha?: Prisma.SortOrder
   idade?: Prisma.SortOrder
   dataNascimento?: Prisma.SortOrder
   cpf?: Prisma.SortOrder
@@ -463,15 +498,17 @@ export type funcionariosCountOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
 }
 
-export type funcionariosAvgOrderByAggregateInput = {
+export type FuncionariosAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   idade?: Prisma.SortOrder
 }
 
-export type funcionariosMaxOrderByAggregateInput = {
+export type FuncionariosMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
+  adm?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  senha?: Prisma.SortOrder
   idade?: Prisma.SortOrder
   dataNascimento?: Prisma.SortOrder
   cpf?: Prisma.SortOrder
@@ -482,10 +519,12 @@ export type funcionariosMaxOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
 }
 
-export type funcionariosMinOrderByAggregateInput = {
+export type FuncionariosMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
+  adm?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  senha?: Prisma.SortOrder
   idade?: Prisma.SortOrder
   dataNascimento?: Prisma.SortOrder
   cpf?: Prisma.SortOrder
@@ -496,52 +535,36 @@ export type funcionariosMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
 }
 
-export type funcionariosSumOrderByAggregateInput = {
+export type FuncionariosSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   idade?: Prisma.SortOrder
 }
 
-export type funcionariosCreateNestedManyWithoutAlunosInput = {
-  create?: Prisma.XOR<Prisma.funcionariosCreateWithoutAlunosInput, Prisma.funcionariosUncheckedCreateWithoutAlunosInput> | Prisma.funcionariosCreateWithoutAlunosInput[] | Prisma.funcionariosUncheckedCreateWithoutAlunosInput[]
-  connectOrCreate?: Prisma.funcionariosCreateOrConnectWithoutAlunosInput | Prisma.funcionariosCreateOrConnectWithoutAlunosInput[]
-  connect?: Prisma.funcionariosWhereUniqueInput | Prisma.funcionariosWhereUniqueInput[]
+export type FuncionariosCreateNestedOneWithoutAlunosInput = {
+  create?: Prisma.XOR<Prisma.FuncionariosCreateWithoutAlunosInput, Prisma.FuncionariosUncheckedCreateWithoutAlunosInput>
+  connectOrCreate?: Prisma.FuncionariosCreateOrConnectWithoutAlunosInput
+  connect?: Prisma.FuncionariosWhereUniqueInput
 }
 
-export type funcionariosUncheckedCreateNestedManyWithoutAlunosInput = {
-  create?: Prisma.XOR<Prisma.funcionariosCreateWithoutAlunosInput, Prisma.funcionariosUncheckedCreateWithoutAlunosInput> | Prisma.funcionariosCreateWithoutAlunosInput[] | Prisma.funcionariosUncheckedCreateWithoutAlunosInput[]
-  connectOrCreate?: Prisma.funcionariosCreateOrConnectWithoutAlunosInput | Prisma.funcionariosCreateOrConnectWithoutAlunosInput[]
-  connect?: Prisma.funcionariosWhereUniqueInput | Prisma.funcionariosWhereUniqueInput[]
+export type FuncionariosUpdateOneWithoutAlunosNestedInput = {
+  create?: Prisma.XOR<Prisma.FuncionariosCreateWithoutAlunosInput, Prisma.FuncionariosUncheckedCreateWithoutAlunosInput>
+  connectOrCreate?: Prisma.FuncionariosCreateOrConnectWithoutAlunosInput
+  upsert?: Prisma.FuncionariosUpsertWithoutAlunosInput
+  disconnect?: Prisma.FuncionariosWhereInput | boolean
+  delete?: Prisma.FuncionariosWhereInput | boolean
+  connect?: Prisma.FuncionariosWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.FuncionariosUpdateToOneWithWhereWithoutAlunosInput, Prisma.FuncionariosUpdateWithoutAlunosInput>, Prisma.FuncionariosUncheckedUpdateWithoutAlunosInput>
 }
 
-export type funcionariosUpdateManyWithoutAlunosNestedInput = {
-  create?: Prisma.XOR<Prisma.funcionariosCreateWithoutAlunosInput, Prisma.funcionariosUncheckedCreateWithoutAlunosInput> | Prisma.funcionariosCreateWithoutAlunosInput[] | Prisma.funcionariosUncheckedCreateWithoutAlunosInput[]
-  connectOrCreate?: Prisma.funcionariosCreateOrConnectWithoutAlunosInput | Prisma.funcionariosCreateOrConnectWithoutAlunosInput[]
-  upsert?: Prisma.funcionariosUpsertWithWhereUniqueWithoutAlunosInput | Prisma.funcionariosUpsertWithWhereUniqueWithoutAlunosInput[]
-  set?: Prisma.funcionariosWhereUniqueInput | Prisma.funcionariosWhereUniqueInput[]
-  disconnect?: Prisma.funcionariosWhereUniqueInput | Prisma.funcionariosWhereUniqueInput[]
-  delete?: Prisma.funcionariosWhereUniqueInput | Prisma.funcionariosWhereUniqueInput[]
-  connect?: Prisma.funcionariosWhereUniqueInput | Prisma.funcionariosWhereUniqueInput[]
-  update?: Prisma.funcionariosUpdateWithWhereUniqueWithoutAlunosInput | Prisma.funcionariosUpdateWithWhereUniqueWithoutAlunosInput[]
-  updateMany?: Prisma.funcionariosUpdateManyWithWhereWithoutAlunosInput | Prisma.funcionariosUpdateManyWithWhereWithoutAlunosInput[]
-  deleteMany?: Prisma.funcionariosScalarWhereInput | Prisma.funcionariosScalarWhereInput[]
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
 }
 
-export type funcionariosUncheckedUpdateManyWithoutAlunosNestedInput = {
-  create?: Prisma.XOR<Prisma.funcionariosCreateWithoutAlunosInput, Prisma.funcionariosUncheckedCreateWithoutAlunosInput> | Prisma.funcionariosCreateWithoutAlunosInput[] | Prisma.funcionariosUncheckedCreateWithoutAlunosInput[]
-  connectOrCreate?: Prisma.funcionariosCreateOrConnectWithoutAlunosInput | Prisma.funcionariosCreateOrConnectWithoutAlunosInput[]
-  upsert?: Prisma.funcionariosUpsertWithWhereUniqueWithoutAlunosInput | Prisma.funcionariosUpsertWithWhereUniqueWithoutAlunosInput[]
-  set?: Prisma.funcionariosWhereUniqueInput | Prisma.funcionariosWhereUniqueInput[]
-  disconnect?: Prisma.funcionariosWhereUniqueInput | Prisma.funcionariosWhereUniqueInput[]
-  delete?: Prisma.funcionariosWhereUniqueInput | Prisma.funcionariosWhereUniqueInput[]
-  connect?: Prisma.funcionariosWhereUniqueInput | Prisma.funcionariosWhereUniqueInput[]
-  update?: Prisma.funcionariosUpdateWithWhereUniqueWithoutAlunosInput | Prisma.funcionariosUpdateWithWhereUniqueWithoutAlunosInput[]
-  updateMany?: Prisma.funcionariosUpdateManyWithWhereWithoutAlunosInput | Prisma.funcionariosUpdateManyWithWhereWithoutAlunosInput[]
-  deleteMany?: Prisma.funcionariosScalarWhereInput | Prisma.funcionariosScalarWhereInput[]
-}
-
-export type funcionariosCreateWithoutAlunosInput = {
+export type FuncionariosCreateWithoutAlunosInput = {
   nome: string
+  adm?: boolean
   email: string
+  senha: string
   idade?: number | null
   dataNascimento?: Date | string | null
   cpf: string
@@ -552,10 +575,12 @@ export type funcionariosCreateWithoutAlunosInput = {
   createdAt?: Date | string
 }
 
-export type funcionariosUncheckedCreateWithoutAlunosInput = {
+export type FuncionariosUncheckedCreateWithoutAlunosInput = {
   id?: number
   nome: string
+  adm?: boolean
   email: string
+  senha: string
   idade?: number | null
   dataNascimento?: Date | string | null
   cpf: string
@@ -566,47 +591,27 @@ export type funcionariosUncheckedCreateWithoutAlunosInput = {
   createdAt?: Date | string
 }
 
-export type funcionariosCreateOrConnectWithoutAlunosInput = {
-  where: Prisma.funcionariosWhereUniqueInput
-  create: Prisma.XOR<Prisma.funcionariosCreateWithoutAlunosInput, Prisma.funcionariosUncheckedCreateWithoutAlunosInput>
+export type FuncionariosCreateOrConnectWithoutAlunosInput = {
+  where: Prisma.FuncionariosWhereUniqueInput
+  create: Prisma.XOR<Prisma.FuncionariosCreateWithoutAlunosInput, Prisma.FuncionariosUncheckedCreateWithoutAlunosInput>
 }
 
-export type funcionariosUpsertWithWhereUniqueWithoutAlunosInput = {
-  where: Prisma.funcionariosWhereUniqueInput
-  update: Prisma.XOR<Prisma.funcionariosUpdateWithoutAlunosInput, Prisma.funcionariosUncheckedUpdateWithoutAlunosInput>
-  create: Prisma.XOR<Prisma.funcionariosCreateWithoutAlunosInput, Prisma.funcionariosUncheckedCreateWithoutAlunosInput>
+export type FuncionariosUpsertWithoutAlunosInput = {
+  update: Prisma.XOR<Prisma.FuncionariosUpdateWithoutAlunosInput, Prisma.FuncionariosUncheckedUpdateWithoutAlunosInput>
+  create: Prisma.XOR<Prisma.FuncionariosCreateWithoutAlunosInput, Prisma.FuncionariosUncheckedCreateWithoutAlunosInput>
+  where?: Prisma.FuncionariosWhereInput
 }
 
-export type funcionariosUpdateWithWhereUniqueWithoutAlunosInput = {
-  where: Prisma.funcionariosWhereUniqueInput
-  data: Prisma.XOR<Prisma.funcionariosUpdateWithoutAlunosInput, Prisma.funcionariosUncheckedUpdateWithoutAlunosInput>
+export type FuncionariosUpdateToOneWithWhereWithoutAlunosInput = {
+  where?: Prisma.FuncionariosWhereInput
+  data: Prisma.XOR<Prisma.FuncionariosUpdateWithoutAlunosInput, Prisma.FuncionariosUncheckedUpdateWithoutAlunosInput>
 }
 
-export type funcionariosUpdateManyWithWhereWithoutAlunosInput = {
-  where: Prisma.funcionariosScalarWhereInput
-  data: Prisma.XOR<Prisma.funcionariosUpdateManyMutationInput, Prisma.funcionariosUncheckedUpdateManyWithoutAlunosInput>
-}
-
-export type funcionariosScalarWhereInput = {
-  AND?: Prisma.funcionariosScalarWhereInput | Prisma.funcionariosScalarWhereInput[]
-  OR?: Prisma.funcionariosScalarWhereInput[]
-  NOT?: Prisma.funcionariosScalarWhereInput | Prisma.funcionariosScalarWhereInput[]
-  id?: Prisma.IntFilter<"funcionarios"> | number
-  nome?: Prisma.StringFilter<"funcionarios"> | string
-  email?: Prisma.StringFilter<"funcionarios"> | string
-  idade?: Prisma.IntNullableFilter<"funcionarios"> | number | null
-  dataNascimento?: Prisma.DateTimeNullableFilter<"funcionarios"> | Date | string | null
-  cpf?: Prisma.StringFilter<"funcionarios"> | string
-  clt?: Prisma.StringFilter<"funcionarios"> | string
-  turno?: Prisma.StringFilter<"funcionarios"> | string
-  cargo?: Prisma.StringFilter<"funcionarios"> | string
-  updatedAt?: Prisma.DateTimeFilter<"funcionarios"> | Date | string
-  createdAt?: Prisma.DateTimeFilter<"funcionarios"> | Date | string
-}
-
-export type funcionariosUpdateWithoutAlunosInput = {
+export type FuncionariosUpdateWithoutAlunosInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
+  adm?: Prisma.BoolFieldUpdateOperationsInput | boolean
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  senha?: Prisma.StringFieldUpdateOperationsInput | string
   idade?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dataNascimento?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
@@ -617,24 +622,12 @@ export type funcionariosUpdateWithoutAlunosInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type funcionariosUncheckedUpdateWithoutAlunosInput = {
+export type FuncionariosUncheckedUpdateWithoutAlunosInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
+  adm?: Prisma.BoolFieldUpdateOperationsInput | boolean
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  idade?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dataNascimento?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cpf?: Prisma.StringFieldUpdateOperationsInput | string
-  clt?: Prisma.StringFieldUpdateOperationsInput | string
-  turno?: Prisma.StringFieldUpdateOperationsInput | string
-  cargo?: Prisma.StringFieldUpdateOperationsInput | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type funcionariosUncheckedUpdateManyWithoutAlunosInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  nome?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  senha?: Prisma.StringFieldUpdateOperationsInput | string
   idade?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dataNascimento?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
@@ -676,10 +669,12 @@ export type FuncionariosCountOutputTypeCountAlunosArgs<ExtArgs extends runtime.T
 }
 
 
-export type funcionariosSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+export type FuncionariosSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   nome?: boolean
+  adm?: boolean
   email?: boolean
+  senha?: boolean
   idade?: boolean
   dataNascimento?: boolean
   cpf?: boolean
@@ -688,14 +683,16 @@ export type funcionariosSelect<ExtArgs extends runtime.Types.Extensions.Internal
   cargo?: boolean
   updatedAt?: boolean
   createdAt?: boolean
-  alunos?: boolean | Prisma.funcionarios$alunosArgs<ExtArgs>
+  alunos?: boolean | Prisma.Funcionarios$alunosArgs<ExtArgs>
   _count?: boolean | Prisma.FuncionariosCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["funcionarios"]>
 
-export type funcionariosSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+export type FuncionariosSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   nome?: boolean
+  adm?: boolean
   email?: boolean
+  senha?: boolean
   idade?: boolean
   dataNascimento?: boolean
   cpf?: boolean
@@ -706,10 +703,12 @@ export type funcionariosSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   createdAt?: boolean
 }, ExtArgs["result"]["funcionarios"]>
 
-export type funcionariosSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+export type FuncionariosSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   nome?: boolean
+  adm?: boolean
   email?: boolean
+  senha?: boolean
   idade?: boolean
   dataNascimento?: boolean
   cpf?: boolean
@@ -720,10 +719,12 @@ export type funcionariosSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   createdAt?: boolean
 }, ExtArgs["result"]["funcionarios"]>
 
-export type funcionariosSelectScalar = {
+export type FuncionariosSelectScalar = {
   id?: boolean
   nome?: boolean
+  adm?: boolean
   email?: boolean
+  senha?: boolean
   idade?: boolean
   dataNascimento?: boolean
   cpf?: boolean
@@ -734,23 +735,25 @@ export type funcionariosSelectScalar = {
   createdAt?: boolean
 }
 
-export type funcionariosOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "email" | "idade" | "dataNascimento" | "cpf" | "clt" | "turno" | "cargo" | "updatedAt" | "createdAt", ExtArgs["result"]["funcionarios"]>
-export type funcionariosInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  alunos?: boolean | Prisma.funcionarios$alunosArgs<ExtArgs>
+export type FuncionariosOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "adm" | "email" | "senha" | "idade" | "dataNascimento" | "cpf" | "clt" | "turno" | "cargo" | "updatedAt" | "createdAt", ExtArgs["result"]["funcionarios"]>
+export type FuncionariosInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  alunos?: boolean | Prisma.Funcionarios$alunosArgs<ExtArgs>
   _count?: boolean | Prisma.FuncionariosCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type funcionariosIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type funcionariosIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type FuncionariosIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type FuncionariosIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
-export type $funcionariosPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  name: "funcionarios"
+export type $FuncionariosPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  name: "Funcionarios"
   objects: {
     alunos: Prisma.$alunosPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     nome: string
+    adm: boolean
     email: string
+    senha: string
     idade: number | null
     dataNascimento: Date | null
     cpf: string
@@ -763,18 +766,18 @@ export type $funcionariosPayload<ExtArgs extends runtime.Types.Extensions.Intern
   composites: {}
 }
 
-export type funcionariosGetPayload<S extends boolean | null | undefined | funcionariosDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$funcionariosPayload, S>
+export type FuncionariosGetPayload<S extends boolean | null | undefined | FuncionariosDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$FuncionariosPayload, S>
 
-export type funcionariosCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
-  Omit<funcionariosFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+export type FuncionariosCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
+  Omit<FuncionariosFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
     select?: FuncionariosCountAggregateInputType | true
   }
 
-export interface funcionariosDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['funcionarios'], meta: { name: 'funcionarios' } }
+export interface FuncionariosDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Funcionarios'], meta: { name: 'Funcionarios' } }
   /**
    * Find zero or one Funcionarios that matches the filter.
-   * @param {funcionariosFindUniqueArgs} args - Arguments to find a Funcionarios
+   * @param {FuncionariosFindUniqueArgs} args - Arguments to find a Funcionarios
    * @example
    * // Get one Funcionarios
    * const funcionarios = await prisma.funcionarios.findUnique({
@@ -783,12 +786,12 @@ export interface funcionariosDelegate<ExtArgs extends runtime.Types.Extensions.I
    *   }
    * })
    */
-  findUnique<T extends funcionariosFindUniqueArgs>(args: Prisma.SelectSubset<T, funcionariosFindUniqueArgs<ExtArgs>>): Prisma.Prisma__funcionariosClient<runtime.Types.Result.GetResult<Prisma.$funcionariosPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  findUnique<T extends FuncionariosFindUniqueArgs>(args: Prisma.SelectSubset<T, FuncionariosFindUniqueArgs<ExtArgs>>): Prisma.Prisma__FuncionariosClient<runtime.Types.Result.GetResult<Prisma.$FuncionariosPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find one Funcionarios that matches the filter or throw an error with `error.code='P2025'`
    * if no matches were found.
-   * @param {funcionariosFindUniqueOrThrowArgs} args - Arguments to find a Funcionarios
+   * @param {FuncionariosFindUniqueOrThrowArgs} args - Arguments to find a Funcionarios
    * @example
    * // Get one Funcionarios
    * const funcionarios = await prisma.funcionarios.findUniqueOrThrow({
@@ -797,13 +800,13 @@ export interface funcionariosDelegate<ExtArgs extends runtime.Types.Extensions.I
    *   }
    * })
    */
-  findUniqueOrThrow<T extends funcionariosFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, funcionariosFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__funcionariosClient<runtime.Types.Result.GetResult<Prisma.$funcionariosPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  findUniqueOrThrow<T extends FuncionariosFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, FuncionariosFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__FuncionariosClient<runtime.Types.Result.GetResult<Prisma.$FuncionariosPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find the first Funcionarios that matches the filter.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {funcionariosFindFirstArgs} args - Arguments to find a Funcionarios
+   * @param {FuncionariosFindFirstArgs} args - Arguments to find a Funcionarios
    * @example
    * // Get one Funcionarios
    * const funcionarios = await prisma.funcionarios.findFirst({
@@ -812,14 +815,14 @@ export interface funcionariosDelegate<ExtArgs extends runtime.Types.Extensions.I
    *   }
    * })
    */
-  findFirst<T extends funcionariosFindFirstArgs>(args?: Prisma.SelectSubset<T, funcionariosFindFirstArgs<ExtArgs>>): Prisma.Prisma__funcionariosClient<runtime.Types.Result.GetResult<Prisma.$funcionariosPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  findFirst<T extends FuncionariosFindFirstArgs>(args?: Prisma.SelectSubset<T, FuncionariosFindFirstArgs<ExtArgs>>): Prisma.Prisma__FuncionariosClient<runtime.Types.Result.GetResult<Prisma.$FuncionariosPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find the first Funcionarios that matches the filter or
    * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {funcionariosFindFirstOrThrowArgs} args - Arguments to find a Funcionarios
+   * @param {FuncionariosFindFirstOrThrowArgs} args - Arguments to find a Funcionarios
    * @example
    * // Get one Funcionarios
    * const funcionarios = await prisma.funcionarios.findFirstOrThrow({
@@ -828,13 +831,13 @@ export interface funcionariosDelegate<ExtArgs extends runtime.Types.Extensions.I
    *   }
    * })
    */
-  findFirstOrThrow<T extends funcionariosFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, funcionariosFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__funcionariosClient<runtime.Types.Result.GetResult<Prisma.$funcionariosPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  findFirstOrThrow<T extends FuncionariosFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, FuncionariosFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__FuncionariosClient<runtime.Types.Result.GetResult<Prisma.$FuncionariosPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find zero or more Funcionarios that matches the filter.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {funcionariosFindManyArgs} args - Arguments to filter and select certain fields only.
+   * @param {FuncionariosFindManyArgs} args - Arguments to filter and select certain fields only.
    * @example
    * // Get all Funcionarios
    * const funcionarios = await prisma.funcionarios.findMany()
@@ -846,11 +849,11 @@ export interface funcionariosDelegate<ExtArgs extends runtime.Types.Extensions.I
    * const funcionariosWithIdOnly = await prisma.funcionarios.findMany({ select: { id: true } })
    * 
    */
-  findMany<T extends funcionariosFindManyArgs>(args?: Prisma.SelectSubset<T, funcionariosFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$funcionariosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+  findMany<T extends FuncionariosFindManyArgs>(args?: Prisma.SelectSubset<T, FuncionariosFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FuncionariosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
   /**
    * Create a Funcionarios.
-   * @param {funcionariosCreateArgs} args - Arguments to create a Funcionarios.
+   * @param {FuncionariosCreateArgs} args - Arguments to create a Funcionarios.
    * @example
    * // Create one Funcionarios
    * const Funcionarios = await prisma.funcionarios.create({
@@ -860,11 +863,11 @@ export interface funcionariosDelegate<ExtArgs extends runtime.Types.Extensions.I
    * })
    * 
    */
-  create<T extends funcionariosCreateArgs>(args: Prisma.SelectSubset<T, funcionariosCreateArgs<ExtArgs>>): Prisma.Prisma__funcionariosClient<runtime.Types.Result.GetResult<Prisma.$funcionariosPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  create<T extends FuncionariosCreateArgs>(args: Prisma.SelectSubset<T, FuncionariosCreateArgs<ExtArgs>>): Prisma.Prisma__FuncionariosClient<runtime.Types.Result.GetResult<Prisma.$FuncionariosPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Create many Funcionarios.
-   * @param {funcionariosCreateManyArgs} args - Arguments to create many Funcionarios.
+   * @param {FuncionariosCreateManyArgs} args - Arguments to create many Funcionarios.
    * @example
    * // Create many Funcionarios
    * const funcionarios = await prisma.funcionarios.createMany({
@@ -874,11 +877,11 @@ export interface funcionariosDelegate<ExtArgs extends runtime.Types.Extensions.I
    * })
    *     
    */
-  createMany<T extends funcionariosCreateManyArgs>(args?: Prisma.SelectSubset<T, funcionariosCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  createMany<T extends FuncionariosCreateManyArgs>(args?: Prisma.SelectSubset<T, FuncionariosCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
    * Create many Funcionarios and returns the data saved in the database.
-   * @param {funcionariosCreateManyAndReturnArgs} args - Arguments to create many Funcionarios.
+   * @param {FuncionariosCreateManyAndReturnArgs} args - Arguments to create many Funcionarios.
    * @example
    * // Create many Funcionarios
    * const funcionarios = await prisma.funcionarios.createManyAndReturn({
@@ -898,11 +901,11 @@ export interface funcionariosDelegate<ExtArgs extends runtime.Types.Extensions.I
    * Read more here: https://pris.ly/d/null-undefined
    * 
    */
-  createManyAndReturn<T extends funcionariosCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, funcionariosCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$funcionariosPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+  createManyAndReturn<T extends FuncionariosCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, FuncionariosCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FuncionariosPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Delete a Funcionarios.
-   * @param {funcionariosDeleteArgs} args - Arguments to delete one Funcionarios.
+   * @param {FuncionariosDeleteArgs} args - Arguments to delete one Funcionarios.
    * @example
    * // Delete one Funcionarios
    * const Funcionarios = await prisma.funcionarios.delete({
@@ -912,11 +915,11 @@ export interface funcionariosDelegate<ExtArgs extends runtime.Types.Extensions.I
    * })
    * 
    */
-  delete<T extends funcionariosDeleteArgs>(args: Prisma.SelectSubset<T, funcionariosDeleteArgs<ExtArgs>>): Prisma.Prisma__funcionariosClient<runtime.Types.Result.GetResult<Prisma.$funcionariosPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  delete<T extends FuncionariosDeleteArgs>(args: Prisma.SelectSubset<T, FuncionariosDeleteArgs<ExtArgs>>): Prisma.Prisma__FuncionariosClient<runtime.Types.Result.GetResult<Prisma.$FuncionariosPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Update one Funcionarios.
-   * @param {funcionariosUpdateArgs} args - Arguments to update one Funcionarios.
+   * @param {FuncionariosUpdateArgs} args - Arguments to update one Funcionarios.
    * @example
    * // Update one Funcionarios
    * const funcionarios = await prisma.funcionarios.update({
@@ -929,11 +932,11 @@ export interface funcionariosDelegate<ExtArgs extends runtime.Types.Extensions.I
    * })
    * 
    */
-  update<T extends funcionariosUpdateArgs>(args: Prisma.SelectSubset<T, funcionariosUpdateArgs<ExtArgs>>): Prisma.Prisma__funcionariosClient<runtime.Types.Result.GetResult<Prisma.$funcionariosPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  update<T extends FuncionariosUpdateArgs>(args: Prisma.SelectSubset<T, FuncionariosUpdateArgs<ExtArgs>>): Prisma.Prisma__FuncionariosClient<runtime.Types.Result.GetResult<Prisma.$FuncionariosPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Delete zero or more Funcionarios.
-   * @param {funcionariosDeleteManyArgs} args - Arguments to filter Funcionarios to delete.
+   * @param {FuncionariosDeleteManyArgs} args - Arguments to filter Funcionarios to delete.
    * @example
    * // Delete a few Funcionarios
    * const { count } = await prisma.funcionarios.deleteMany({
@@ -943,13 +946,13 @@ export interface funcionariosDelegate<ExtArgs extends runtime.Types.Extensions.I
    * })
    * 
    */
-  deleteMany<T extends funcionariosDeleteManyArgs>(args?: Prisma.SelectSubset<T, funcionariosDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  deleteMany<T extends FuncionariosDeleteManyArgs>(args?: Prisma.SelectSubset<T, FuncionariosDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
    * Update zero or more Funcionarios.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {funcionariosUpdateManyArgs} args - Arguments to update one or more rows.
+   * @param {FuncionariosUpdateManyArgs} args - Arguments to update one or more rows.
    * @example
    * // Update many Funcionarios
    * const funcionarios = await prisma.funcionarios.updateMany({
@@ -962,11 +965,11 @@ export interface funcionariosDelegate<ExtArgs extends runtime.Types.Extensions.I
    * })
    * 
    */
-  updateMany<T extends funcionariosUpdateManyArgs>(args: Prisma.SelectSubset<T, funcionariosUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  updateMany<T extends FuncionariosUpdateManyArgs>(args: Prisma.SelectSubset<T, FuncionariosUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
    * Update zero or more Funcionarios and returns the data updated in the database.
-   * @param {funcionariosUpdateManyAndReturnArgs} args - Arguments to update many Funcionarios.
+   * @param {FuncionariosUpdateManyAndReturnArgs} args - Arguments to update many Funcionarios.
    * @example
    * // Update many Funcionarios
    * const funcionarios = await prisma.funcionarios.updateManyAndReturn({
@@ -992,11 +995,11 @@ export interface funcionariosDelegate<ExtArgs extends runtime.Types.Extensions.I
    * Read more here: https://pris.ly/d/null-undefined
    * 
    */
-  updateManyAndReturn<T extends funcionariosUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, funcionariosUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$funcionariosPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+  updateManyAndReturn<T extends FuncionariosUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, FuncionariosUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FuncionariosPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Create or update one Funcionarios.
-   * @param {funcionariosUpsertArgs} args - Arguments to update or create a Funcionarios.
+   * @param {FuncionariosUpsertArgs} args - Arguments to update or create a Funcionarios.
    * @example
    * // Update or create a Funcionarios
    * const funcionarios = await prisma.funcionarios.upsert({
@@ -1011,14 +1014,14 @@ export interface funcionariosDelegate<ExtArgs extends runtime.Types.Extensions.I
    *   }
    * })
    */
-  upsert<T extends funcionariosUpsertArgs>(args: Prisma.SelectSubset<T, funcionariosUpsertArgs<ExtArgs>>): Prisma.Prisma__funcionariosClient<runtime.Types.Result.GetResult<Prisma.$funcionariosPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  upsert<T extends FuncionariosUpsertArgs>(args: Prisma.SelectSubset<T, FuncionariosUpsertArgs<ExtArgs>>): Prisma.Prisma__FuncionariosClient<runtime.Types.Result.GetResult<Prisma.$FuncionariosPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
   /**
    * Count the number of Funcionarios.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {funcionariosCountArgs} args - Arguments to filter Funcionarios to count.
+   * @param {FuncionariosCountArgs} args - Arguments to filter Funcionarios to count.
    * @example
    * // Count the number of Funcionarios
    * const count = await prisma.funcionarios.count({
@@ -1027,8 +1030,8 @@ export interface funcionariosDelegate<ExtArgs extends runtime.Types.Extensions.I
    *   }
    * })
   **/
-  count<T extends funcionariosCountArgs>(
-    args?: Prisma.Subset<T, funcionariosCountArgs>,
+  count<T extends FuncionariosCountArgs>(
+    args?: Prisma.Subset<T, FuncionariosCountArgs>,
   ): Prisma.PrismaPromise<
     T extends runtime.Types.Utils.Record<'select', any>
       ? T['select'] extends true
@@ -1067,7 +1070,7 @@ export interface funcionariosDelegate<ExtArgs extends runtime.Types.Extensions.I
    * Group by Funcionarios.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {funcionariosGroupByArgs} args - Group by arguments.
+   * @param {FuncionariosGroupByArgs} args - Group by arguments.
    * @example
    * // Group by city, order by createdAt, get count
    * const result = await prisma.user.groupBy({
@@ -1082,14 +1085,14 @@ export interface funcionariosDelegate<ExtArgs extends runtime.Types.Extensions.I
    * 
   **/
   groupBy<
-    T extends funcionariosGroupByArgs,
+    T extends FuncionariosGroupByArgs,
     HasSelectOrTake extends Prisma.Or<
       Prisma.Extends<'skip', Prisma.Keys<T>>,
       Prisma.Extends<'take', Prisma.Keys<T>>
     >,
     OrderByArg extends Prisma.True extends HasSelectOrTake
-      ? { orderBy: funcionariosGroupByArgs['orderBy'] }
-      : { orderBy?: funcionariosGroupByArgs['orderBy'] },
+      ? { orderBy: FuncionariosGroupByArgs['orderBy'] }
+      : { orderBy?: FuncionariosGroupByArgs['orderBy'] },
     OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>,
     ByFields extends Prisma.MaybeTupleToUnion<T['by']>,
     ByValid extends Prisma.Has<ByFields, OrderFields>,
@@ -1138,22 +1141,22 @@ export interface funcionariosDelegate<ExtArgs extends runtime.Types.Extensions.I
           ? never
           : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
       }[OrderFields]
-  >(args: Prisma.SubsetIntersection<T, funcionariosGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFuncionariosGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  >(args: Prisma.SubsetIntersection<T, FuncionariosGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFuncionariosGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
 /**
- * Fields of the funcionarios model
+ * Fields of the Funcionarios model
  */
-readonly fields: funcionariosFieldRefs;
+readonly fields: FuncionariosFieldRefs;
 }
 
 /**
- * The delegate class that acts as a "Promise-like" for funcionarios.
+ * The delegate class that acts as a "Promise-like" for Funcionarios.
  * Why is this prefixed with `Prisma__`?
  * Because we want to prevent naming conflicts as mentioned in
  * https://github.com/prisma/prisma-client-js/issues/707
  */
-export interface Prisma__funcionariosClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+export interface Prisma__FuncionariosClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  alunos<T extends Prisma.funcionarios$alunosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.funcionarios$alunosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$alunosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  alunos<T extends Prisma.Funcionarios$alunosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Funcionarios$alunosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$alunosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1180,414 +1183,418 @@ export interface Prisma__funcionariosClient<T, Null = never, ExtArgs extends run
 
 
 /**
- * Fields of the funcionarios model
+ * Fields of the Funcionarios model
  */
-export interface funcionariosFieldRefs {
-  readonly id: Prisma.FieldRef<"funcionarios", 'Int'>
-  readonly nome: Prisma.FieldRef<"funcionarios", 'String'>
-  readonly email: Prisma.FieldRef<"funcionarios", 'String'>
-  readonly idade: Prisma.FieldRef<"funcionarios", 'Int'>
-  readonly dataNascimento: Prisma.FieldRef<"funcionarios", 'DateTime'>
-  readonly cpf: Prisma.FieldRef<"funcionarios", 'String'>
-  readonly clt: Prisma.FieldRef<"funcionarios", 'String'>
-  readonly turno: Prisma.FieldRef<"funcionarios", 'String'>
-  readonly cargo: Prisma.FieldRef<"funcionarios", 'String'>
-  readonly updatedAt: Prisma.FieldRef<"funcionarios", 'DateTime'>
-  readonly createdAt: Prisma.FieldRef<"funcionarios", 'DateTime'>
+export interface FuncionariosFieldRefs {
+  readonly id: Prisma.FieldRef<"Funcionarios", 'Int'>
+  readonly nome: Prisma.FieldRef<"Funcionarios", 'String'>
+  readonly adm: Prisma.FieldRef<"Funcionarios", 'Boolean'>
+  readonly email: Prisma.FieldRef<"Funcionarios", 'String'>
+  readonly senha: Prisma.FieldRef<"Funcionarios", 'String'>
+  readonly idade: Prisma.FieldRef<"Funcionarios", 'Int'>
+  readonly dataNascimento: Prisma.FieldRef<"Funcionarios", 'DateTime'>
+  readonly cpf: Prisma.FieldRef<"Funcionarios", 'String'>
+  readonly clt: Prisma.FieldRef<"Funcionarios", 'String'>
+  readonly turno: Prisma.FieldRef<"Funcionarios", 'String'>
+  readonly cargo: Prisma.FieldRef<"Funcionarios", 'String'>
+  readonly updatedAt: Prisma.FieldRef<"Funcionarios", 'DateTime'>
+  readonly createdAt: Prisma.FieldRef<"Funcionarios", 'DateTime'>
 }
     
 
 // Custom InputTypes
 /**
- * funcionarios findUnique
+ * Funcionarios findUnique
  */
-export type funcionariosFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type FuncionariosFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the funcionarios
+   * Select specific fields to fetch from the Funcionarios
    */
-  select?: Prisma.funcionariosSelect<ExtArgs> | null
+  select?: Prisma.FuncionariosSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the funcionarios
+   * Omit specific fields from the Funcionarios
    */
-  omit?: Prisma.funcionariosOmit<ExtArgs> | null
+  omit?: Prisma.FuncionariosOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.funcionariosInclude<ExtArgs> | null
+  include?: Prisma.FuncionariosInclude<ExtArgs> | null
   /**
-   * Filter, which funcionarios to fetch.
+   * Filter, which Funcionarios to fetch.
    */
-  where: Prisma.funcionariosWhereUniqueInput
+  where: Prisma.FuncionariosWhereUniqueInput
 }
 
 /**
- * funcionarios findUniqueOrThrow
+ * Funcionarios findUniqueOrThrow
  */
-export type funcionariosFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type FuncionariosFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the funcionarios
+   * Select specific fields to fetch from the Funcionarios
    */
-  select?: Prisma.funcionariosSelect<ExtArgs> | null
+  select?: Prisma.FuncionariosSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the funcionarios
+   * Omit specific fields from the Funcionarios
    */
-  omit?: Prisma.funcionariosOmit<ExtArgs> | null
+  omit?: Prisma.FuncionariosOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.funcionariosInclude<ExtArgs> | null
+  include?: Prisma.FuncionariosInclude<ExtArgs> | null
   /**
-   * Filter, which funcionarios to fetch.
+   * Filter, which Funcionarios to fetch.
    */
-  where: Prisma.funcionariosWhereUniqueInput
+  where: Prisma.FuncionariosWhereUniqueInput
 }
 
 /**
- * funcionarios findFirst
+ * Funcionarios findFirst
  */
-export type funcionariosFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type FuncionariosFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the funcionarios
+   * Select specific fields to fetch from the Funcionarios
    */
-  select?: Prisma.funcionariosSelect<ExtArgs> | null
+  select?: Prisma.FuncionariosSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the funcionarios
+   * Omit specific fields from the Funcionarios
    */
-  omit?: Prisma.funcionariosOmit<ExtArgs> | null
+  omit?: Prisma.FuncionariosOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.funcionariosInclude<ExtArgs> | null
+  include?: Prisma.FuncionariosInclude<ExtArgs> | null
   /**
-   * Filter, which funcionarios to fetch.
+   * Filter, which Funcionarios to fetch.
    */
-  where?: Prisma.funcionariosWhereInput
+  where?: Prisma.FuncionariosWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of funcionarios to fetch.
+   * Determine the order of Funcionarios to fetch.
    */
-  orderBy?: Prisma.funcionariosOrderByWithRelationInput | Prisma.funcionariosOrderByWithRelationInput[]
+  orderBy?: Prisma.FuncionariosOrderByWithRelationInput | Prisma.FuncionariosOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
-   * Sets the position for searching for funcionarios.
+   * Sets the position for searching for Funcionarios.
    */
-  cursor?: Prisma.funcionariosWhereUniqueInput
+  cursor?: Prisma.FuncionariosWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` funcionarios from the position of the cursor.
+   * Take `±n` Funcionarios from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` funcionarios.
+   * Skip the first `n` Funcionarios.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    * 
-   * Filter by unique combinations of funcionarios.
+   * Filter by unique combinations of Funcionarios.
    */
   distinct?: Prisma.FuncionariosScalarFieldEnum | Prisma.FuncionariosScalarFieldEnum[]
 }
 
 /**
- * funcionarios findFirstOrThrow
+ * Funcionarios findFirstOrThrow
  */
-export type funcionariosFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type FuncionariosFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the funcionarios
+   * Select specific fields to fetch from the Funcionarios
    */
-  select?: Prisma.funcionariosSelect<ExtArgs> | null
+  select?: Prisma.FuncionariosSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the funcionarios
+   * Omit specific fields from the Funcionarios
    */
-  omit?: Prisma.funcionariosOmit<ExtArgs> | null
+  omit?: Prisma.FuncionariosOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.funcionariosInclude<ExtArgs> | null
+  include?: Prisma.FuncionariosInclude<ExtArgs> | null
   /**
-   * Filter, which funcionarios to fetch.
+   * Filter, which Funcionarios to fetch.
    */
-  where?: Prisma.funcionariosWhereInput
+  where?: Prisma.FuncionariosWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of funcionarios to fetch.
+   * Determine the order of Funcionarios to fetch.
    */
-  orderBy?: Prisma.funcionariosOrderByWithRelationInput | Prisma.funcionariosOrderByWithRelationInput[]
+  orderBy?: Prisma.FuncionariosOrderByWithRelationInput | Prisma.FuncionariosOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
-   * Sets the position for searching for funcionarios.
+   * Sets the position for searching for Funcionarios.
    */
-  cursor?: Prisma.funcionariosWhereUniqueInput
+  cursor?: Prisma.FuncionariosWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` funcionarios from the position of the cursor.
+   * Take `±n` Funcionarios from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` funcionarios.
+   * Skip the first `n` Funcionarios.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    * 
-   * Filter by unique combinations of funcionarios.
+   * Filter by unique combinations of Funcionarios.
    */
   distinct?: Prisma.FuncionariosScalarFieldEnum | Prisma.FuncionariosScalarFieldEnum[]
 }
 
 /**
- * funcionarios findMany
+ * Funcionarios findMany
  */
-export type funcionariosFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type FuncionariosFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the funcionarios
+   * Select specific fields to fetch from the Funcionarios
    */
-  select?: Prisma.funcionariosSelect<ExtArgs> | null
+  select?: Prisma.FuncionariosSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the funcionarios
+   * Omit specific fields from the Funcionarios
    */
-  omit?: Prisma.funcionariosOmit<ExtArgs> | null
+  omit?: Prisma.FuncionariosOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.funcionariosInclude<ExtArgs> | null
+  include?: Prisma.FuncionariosInclude<ExtArgs> | null
   /**
-   * Filter, which funcionarios to fetch.
+   * Filter, which Funcionarios to fetch.
    */
-  where?: Prisma.funcionariosWhereInput
+  where?: Prisma.FuncionariosWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of funcionarios to fetch.
+   * Determine the order of Funcionarios to fetch.
    */
-  orderBy?: Prisma.funcionariosOrderByWithRelationInput | Prisma.funcionariosOrderByWithRelationInput[]
+  orderBy?: Prisma.FuncionariosOrderByWithRelationInput | Prisma.FuncionariosOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
-   * Sets the position for listing funcionarios.
+   * Sets the position for listing Funcionarios.
    */
-  cursor?: Prisma.funcionariosWhereUniqueInput
+  cursor?: Prisma.FuncionariosWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` funcionarios from the position of the cursor.
+   * Take `±n` Funcionarios from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` funcionarios.
+   * Skip the first `n` Funcionarios.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    * 
-   * Filter by unique combinations of funcionarios.
+   * Filter by unique combinations of Funcionarios.
    */
   distinct?: Prisma.FuncionariosScalarFieldEnum | Prisma.FuncionariosScalarFieldEnum[]
 }
 
 /**
- * funcionarios create
+ * Funcionarios create
  */
-export type funcionariosCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type FuncionariosCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the funcionarios
+   * Select specific fields to fetch from the Funcionarios
    */
-  select?: Prisma.funcionariosSelect<ExtArgs> | null
+  select?: Prisma.FuncionariosSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the funcionarios
+   * Omit specific fields from the Funcionarios
    */
-  omit?: Prisma.funcionariosOmit<ExtArgs> | null
+  omit?: Prisma.FuncionariosOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.funcionariosInclude<ExtArgs> | null
+  include?: Prisma.FuncionariosInclude<ExtArgs> | null
   /**
-   * The data needed to create a funcionarios.
+   * The data needed to create a Funcionarios.
    */
-  data: Prisma.XOR<Prisma.funcionariosCreateInput, Prisma.funcionariosUncheckedCreateInput>
+  data: Prisma.XOR<Prisma.FuncionariosCreateInput, Prisma.FuncionariosUncheckedCreateInput>
 }
 
 /**
- * funcionarios createMany
+ * Funcionarios createMany
  */
-export type funcionariosCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type FuncionariosCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * The data used to create many funcionarios.
+   * The data used to create many Funcionarios.
    */
-  data: Prisma.funcionariosCreateManyInput | Prisma.funcionariosCreateManyInput[]
+  data: Prisma.FuncionariosCreateManyInput | Prisma.FuncionariosCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
- * funcionarios createManyAndReturn
+ * Funcionarios createManyAndReturn
  */
-export type funcionariosCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type FuncionariosCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the funcionarios
+   * Select specific fields to fetch from the Funcionarios
    */
-  select?: Prisma.funcionariosSelectCreateManyAndReturn<ExtArgs> | null
+  select?: Prisma.FuncionariosSelectCreateManyAndReturn<ExtArgs> | null
   /**
-   * Omit specific fields from the funcionarios
+   * Omit specific fields from the Funcionarios
    */
-  omit?: Prisma.funcionariosOmit<ExtArgs> | null
+  omit?: Prisma.FuncionariosOmit<ExtArgs> | null
   /**
-   * The data used to create many funcionarios.
+   * The data used to create many Funcionarios.
    */
-  data: Prisma.funcionariosCreateManyInput | Prisma.funcionariosCreateManyInput[]
+  data: Prisma.FuncionariosCreateManyInput | Prisma.FuncionariosCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
- * funcionarios update
+ * Funcionarios update
  */
-export type funcionariosUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type FuncionariosUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the funcionarios
+   * Select specific fields to fetch from the Funcionarios
    */
-  select?: Prisma.funcionariosSelect<ExtArgs> | null
+  select?: Prisma.FuncionariosSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the funcionarios
+   * Omit specific fields from the Funcionarios
    */
-  omit?: Prisma.funcionariosOmit<ExtArgs> | null
+  omit?: Prisma.FuncionariosOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.funcionariosInclude<ExtArgs> | null
+  include?: Prisma.FuncionariosInclude<ExtArgs> | null
   /**
-   * The data needed to update a funcionarios.
+   * The data needed to update a Funcionarios.
    */
-  data: Prisma.XOR<Prisma.funcionariosUpdateInput, Prisma.funcionariosUncheckedUpdateInput>
+  data: Prisma.XOR<Prisma.FuncionariosUpdateInput, Prisma.FuncionariosUncheckedUpdateInput>
   /**
-   * Choose, which funcionarios to update.
+   * Choose, which Funcionarios to update.
    */
-  where: Prisma.funcionariosWhereUniqueInput
+  where: Prisma.FuncionariosWhereUniqueInput
 }
 
 /**
- * funcionarios updateMany
+ * Funcionarios updateMany
  */
-export type funcionariosUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type FuncionariosUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * The data used to update funcionarios.
+   * The data used to update Funcionarios.
    */
-  data: Prisma.XOR<Prisma.funcionariosUpdateManyMutationInput, Prisma.funcionariosUncheckedUpdateManyInput>
+  data: Prisma.XOR<Prisma.FuncionariosUpdateManyMutationInput, Prisma.FuncionariosUncheckedUpdateManyInput>
   /**
-   * Filter which funcionarios to update
+   * Filter which Funcionarios to update
    */
-  where?: Prisma.funcionariosWhereInput
+  where?: Prisma.FuncionariosWhereInput
   /**
-   * Limit how many funcionarios to update.
+   * Limit how many Funcionarios to update.
    */
   limit?: number
 }
 
 /**
- * funcionarios updateManyAndReturn
+ * Funcionarios updateManyAndReturn
  */
-export type funcionariosUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type FuncionariosUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the funcionarios
+   * Select specific fields to fetch from the Funcionarios
    */
-  select?: Prisma.funcionariosSelectUpdateManyAndReturn<ExtArgs> | null
+  select?: Prisma.FuncionariosSelectUpdateManyAndReturn<ExtArgs> | null
   /**
-   * Omit specific fields from the funcionarios
+   * Omit specific fields from the Funcionarios
    */
-  omit?: Prisma.funcionariosOmit<ExtArgs> | null
+  omit?: Prisma.FuncionariosOmit<ExtArgs> | null
   /**
-   * The data used to update funcionarios.
+   * The data used to update Funcionarios.
    */
-  data: Prisma.XOR<Prisma.funcionariosUpdateManyMutationInput, Prisma.funcionariosUncheckedUpdateManyInput>
+  data: Prisma.XOR<Prisma.FuncionariosUpdateManyMutationInput, Prisma.FuncionariosUncheckedUpdateManyInput>
   /**
-   * Filter which funcionarios to update
+   * Filter which Funcionarios to update
    */
-  where?: Prisma.funcionariosWhereInput
+  where?: Prisma.FuncionariosWhereInput
   /**
-   * Limit how many funcionarios to update.
+   * Limit how many Funcionarios to update.
    */
   limit?: number
 }
 
 /**
- * funcionarios upsert
+ * Funcionarios upsert
  */
-export type funcionariosUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type FuncionariosUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the funcionarios
+   * Select specific fields to fetch from the Funcionarios
    */
-  select?: Prisma.funcionariosSelect<ExtArgs> | null
+  select?: Prisma.FuncionariosSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the funcionarios
+   * Omit specific fields from the Funcionarios
    */
-  omit?: Prisma.funcionariosOmit<ExtArgs> | null
+  omit?: Prisma.FuncionariosOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.funcionariosInclude<ExtArgs> | null
+  include?: Prisma.FuncionariosInclude<ExtArgs> | null
   /**
-   * The filter to search for the funcionarios to update in case it exists.
+   * The filter to search for the Funcionarios to update in case it exists.
    */
-  where: Prisma.funcionariosWhereUniqueInput
+  where: Prisma.FuncionariosWhereUniqueInput
   /**
-   * In case the funcionarios found by the `where` argument doesn't exist, create a new funcionarios with this data.
+   * In case the Funcionarios found by the `where` argument doesn't exist, create a new Funcionarios with this data.
    */
-  create: Prisma.XOR<Prisma.funcionariosCreateInput, Prisma.funcionariosUncheckedCreateInput>
+  create: Prisma.XOR<Prisma.FuncionariosCreateInput, Prisma.FuncionariosUncheckedCreateInput>
   /**
-   * In case the funcionarios was found with the provided `where` argument, update it with this data.
+   * In case the Funcionarios was found with the provided `where` argument, update it with this data.
    */
-  update: Prisma.XOR<Prisma.funcionariosUpdateInput, Prisma.funcionariosUncheckedUpdateInput>
+  update: Prisma.XOR<Prisma.FuncionariosUpdateInput, Prisma.FuncionariosUncheckedUpdateInput>
 }
 
 /**
- * funcionarios delete
+ * Funcionarios delete
  */
-export type funcionariosDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type FuncionariosDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the funcionarios
+   * Select specific fields to fetch from the Funcionarios
    */
-  select?: Prisma.funcionariosSelect<ExtArgs> | null
+  select?: Prisma.FuncionariosSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the funcionarios
+   * Omit specific fields from the Funcionarios
    */
-  omit?: Prisma.funcionariosOmit<ExtArgs> | null
+  omit?: Prisma.FuncionariosOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.funcionariosInclude<ExtArgs> | null
+  include?: Prisma.FuncionariosInclude<ExtArgs> | null
   /**
-   * Filter which funcionarios to delete.
+   * Filter which Funcionarios to delete.
    */
-  where: Prisma.funcionariosWhereUniqueInput
+  where: Prisma.FuncionariosWhereUniqueInput
 }
 
 /**
- * funcionarios deleteMany
+ * Funcionarios deleteMany
  */
-export type funcionariosDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type FuncionariosDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Filter which funcionarios to delete
+   * Filter which Funcionarios to delete
    */
-  where?: Prisma.funcionariosWhereInput
+  where?: Prisma.FuncionariosWhereInput
   /**
-   * Limit how many funcionarios to delete.
+   * Limit how many Funcionarios to delete.
    */
   limit?: number
 }
 
 /**
- * funcionarios.alunos
+ * Funcionarios.alunos
  */
-export type funcionarios$alunosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Funcionarios$alunosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the alunos
    */
@@ -1609,19 +1616,19 @@ export type funcionarios$alunosArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
- * funcionarios without action
+ * Funcionarios without action
  */
-export type funcionariosDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type FuncionariosDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the funcionarios
+   * Select specific fields to fetch from the Funcionarios
    */
-  select?: Prisma.funcionariosSelect<ExtArgs> | null
+  select?: Prisma.FuncionariosSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the funcionarios
+   * Omit specific fields from the Funcionarios
    */
-  omit?: Prisma.funcionariosOmit<ExtArgs> | null
+  omit?: Prisma.FuncionariosOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.funcionariosInclude<ExtArgs> | null
+  include?: Prisma.FuncionariosInclude<ExtArgs> | null
 }
